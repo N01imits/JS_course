@@ -7,15 +7,15 @@
 // let firstName = "Ilya";
 // console.log(firstName);
 
-// let country = "Россия";
-// let continent = "Евразия";
-// let population = 146980000;
+// const country = "Россия";
+// const continent = "Евразия";
+// let populationRussia = 146980000;
 // console.log(country, continent, population);
 // console.log(country);
 // console.log(continent);
 // console.log(population);
 
-// ? data types
+// ? data types and let, const, var
 // let javascriptIsFun = true;
 // console.log(javascriptIsFun);
 
@@ -42,3 +42,17 @@
 // console.log(typeof population);
 // console.log(typeof isIsland);
 // console.log(typeof language);
+
+// language = "Русский язык";
+
+// ? Basic operators
+// console.log(populationRussia / 2);
+// populationRussia++;
+// console.log(populationRussia);
+// let populationFinland = 6000000;
+// console.log(populationRussia > populationFinland);
+// let averagePopulationCountry = 33000000;
+// console.log(averagePopulationCountry > populationRussia);
+// let description =
+// 	"Россия находится в Евразии и в ней примерно 146 миллионов жителей говорят по-русски";
+// console.log(description);
