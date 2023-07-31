@@ -9,11 +9,11 @@
 
 // const country = "Россия";
 // const continent = "Евразия";
-// let populationRussia = 146980000;
-// console.log(country, continent, population);
+// let populationRussia = 147;
+// console.log(country, continent, populationRussia);
 // console.log(country);
 // console.log(continent);
-// console.log(population);
+// console.log(populationRussia);
 
 // ? data types and let, const, var
 // let javascriptIsFun = true;
@@ -49,10 +49,22 @@
 // console.log(populationRussia / 2);
 // populationRussia++;
 // console.log(populationRussia);
-// let populationFinland = 6000000;
+// let populationFinland = 6;
 // console.log(populationRussia > populationFinland);
-// let averagePopulationCountry = 33000000;
+// let averagePopulationCountry = 33;
 // console.log(averagePopulationCountry > populationRussia);
 // let description =
-// 	"Россия находится в Евразии и в ней примерно 146 миллионов жителей говорят по-русски";
+// 	country +
+// 	" в " +
+// 	continent +
+// 	" и " +
+// 	populationRussia +
+// 	" миллионов человек разговаривают на " +
+// 	language;
 // console.log(description);
+
+// ? strings and template literals
+description = `${country} находится на континете ${continent} и ${populationRussia}
+миллионов человек разговаривают на
+${language}`;
+console.log(description);
