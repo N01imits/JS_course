@@ -9,7 +9,7 @@
 
 // const country = "Россия";
 // const continent = "Евразия";
-let populationRussia = 33;
+// let populationRussia = 33;
 // console.log(country, continent, populationRussia);
 // console.log(country);
 // console.log(continent);
@@ -70,11 +70,18 @@ let populationRussia = 33;
 // console.log(description);
 
 // ? if/else statements
-let averagePopulation = 33;
-if (populationRussia > averagePopulation) {
-	console.log(`Население России ${populationRussia} миллиона(ов) человек, это выше среднего`);
-} else if (populationRussia < 33) {
-	console.log(`Население России ниже среднего на ${33 - populationRussia} миллионов`);
-} else {
-	console.log(`население России равно среднему значению ${populationRussia}`);
-}
+// let averagePopulation = 33;
+// if (populationRussia > averagePopulation) {
+// 	console.log(`Население России ${populationRussia} миллиона(ов) человек, это выше среднего`);
+// } else if (populationRussia < 33) {
+// 	console.log(`Население России ниже среднего на ${33 - populationRussia} миллионов`);
+// } else {
+// 	console.log(`население России равно среднему значению ${populationRussia}`);
+// }
+
+// ? Type Conversion and Coercion
+console.log("9" - "5");
+console.log("19" - "13" + "17");
+console.log("19" - "13" + 17);
+console.log("123" < 57);
+console.log(5 + 6 + "4" + 9 - 4 - 2);
