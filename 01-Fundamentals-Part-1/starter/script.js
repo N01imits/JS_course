@@ -9,7 +9,7 @@
 
 // const country = "Россия";
 // const continent = "Евразия";
-// let populationRussia = 147;
+let populationRussia = 33;
 // console.log(country, continent, populationRussia);
 // console.log(country);
 // console.log(continent);
@@ -64,7 +64,17 @@
 // console.log(description);
 
 // ? strings and template literals
-description = `${country} находится на континете ${continent} и ${populationRussia}
-миллионов человек разговаривают на
-${language}`;
-console.log(description);
+// description = `${country} находится на континете ${continent} и ${populationRussia}
+// миллионов человек разговаривают на
+// ${language}`;
+// console.log(description);
+
+// ? if/else statements
+let averagePopulation = 33;
+if (populationRussia > averagePopulation) {
+	console.log(`Население России ${populationRussia} миллиона(ов) человек, это выше среднего`);
+} else if (populationRussia < 33) {
+	console.log(`Население России ниже среднего на ${33 - populationRussia} миллионов`);
+} else {
+	console.log(`население России равно среднему значению ${populationRussia}`);
+}
