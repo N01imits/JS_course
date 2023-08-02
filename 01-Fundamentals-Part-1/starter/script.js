@@ -127,25 +127,66 @@
 // 	console.log("вы ввели неверный день");
 // }
 
-let language = "1";
+// let language = "1";
 
-switch (language) {
-	case "chinese":
-	case "mandarian":
-		console.log("MOST number of native speakers!");
-		break;
-	case "spanish":
-		console.log("2nd place in number of native speakers");
-		break;
-	case "english":
-		console.log("3rd place");
-		break;
-	case "hindi":
-		console.log("Number 4");
-		break;
-	case "arabic":
-		console.log("5th most spoken language");
-		break;
-	default:
-		console.log("Great language too :D");
-}
+// switch (language) {
+// 	case "chinese":
+// 	case "mandarian":
+// 		console.log("MOST number of native speakers!");
+// 		break;
+// 	case "spanish":
+// 		console.log("2nd place in number of native speakers");
+// 		break;
+// 	case "english":
+// 		console.log("3rd place");
+// 		break;
+// 	case "hindi":
+// 		console.log("Number 4");
+// 		break;
+// 	case "arabic":
+// 		console.log("5th most spoken language");
+// 		break;
+// 	default:
+// 		console.log("Great language too :D");
+
+// CHALLENGE #4
+// Steven needs a very simple tip calculator for whenever he goes to eat in a restaurant. In his country, it's usual to tip 15% if the bill value is
+// between 50 and 300. If the value is different, the tip is 20%.
+
+// Your tasks:
+
+// Calculate the tip, depending on the bill value. Create a variable called tip for this. It's not allowed to use an if...else statement
+// (if it's easier for you, you can start with an if...else statement, and then try to convert it to a ternary operator).
+
+// Print a string to the console containing the bill value, the tip, and the final value (bill + tip).
+
+// Example: The bill was 275, the tip was 41.25, and the total value 316.25.
+
+// Note: Use the values of the bill and tip variables to construct this string. Don't hard-code them 🙂
+
+// TEST DATA: Test with different bill values: 275, 40, and 430
+
+// ? The Conditional (Ternary) Operator
+const bill = 275;
+let tip;
+300 >= bill >= 50
+	? console.log(
+			`The bill was ${bill}, the tip was ${(tip = (bill / 100) * 15)} and the total value ${
+				bill + tip
+			}`,
+	  )
+	: console.log(
+			`The bill was ${bill}, the tip was ${(tip = (bill / 100) * 15)} and the total value ${
+				bill + tip
+			}`,
+	  );
+
+const country = "Португалия";
+let population = 11;
+let language = "английский";
+const isIsland = false;
+// population > 33
+// 	? console.log(`население России выше среднего`)
+// 	: console.log(`население России выше среднего`);
+
+console.log(`${country}'s population is ${population > 33 ? "above" : "below"} average`);
