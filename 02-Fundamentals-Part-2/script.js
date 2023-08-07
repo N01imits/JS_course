@@ -10,16 +10,23 @@
 // ${describeDenmark}`);
 
 // ? function Declarations
-function percentageOfWorld1(population) {
-	return (population / 7900) * 100;
-}
+// function percentageOfWorld1(population) {
+// 	return (population / 7900) * 100;
+// }
 
-// ? function Expressions
-const percentageOfWorld2 = function (population) {
-	return (population / 7900) * 100;
-};
+// // ? function Expressions
+// const percentageOfWorld2 = function (population) {
+// 	return (population / 7900) * 100;
+// };
 
-const percRussia = percentageOfWorld1(145);
-const percDenmark = percentageOfWorld1(0.6);
-const percArgentina = percentageOfWorld1(46);
+// const percRussia = percentageOfWorld1(145);
+// const percDenmark = percentageOfWorld1(0.6);
+// const percArgentina = percentageOfWorld1(46);
+// console.log(percRussia, percDenmark, percArgentina);
+
+// ? arrow function
+const percentageOfWorld3 = (population) => (population / 7900) * 100;
+const percRussia = percentageOfWorld3(145);
+const percDenmark = percentageOfWorld3(0.6);
+const percArgentina = percentageOfWorld3(46);
 console.log(percRussia, percDenmark, percArgentina);
