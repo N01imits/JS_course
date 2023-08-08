@@ -3,7 +3,7 @@
 // }
 
 // const descriptionRussia = describeCountry("Russia", 145, "Moscow");
-// const descriptionArgentina = describeCountry("Argentina", 46, "Buenos Aires");
+// const descriptionArgentina = describeCountry("Argentina", ;46, "Buenos Aires");
 // const describeDenmark = describeCountry("Denmark", 0.6, "Copenhagen");
 // console.log(`${descriptionRussia},
 // ${descriptionArgentina},
@@ -26,7 +26,20 @@
 
 // ? arrow function
 const percentageOfWorld3 = (population) => (population / 7900) * 100;
-const percRussia = percentageOfWorld3(145);
-const percDenmark = percentageOfWorld3(0.6);
-const percArgentina = percentageOfWorld3(46);
-console.log(percRussia, percDenmark, percArgentina);
+// const percRussia = percentageOfWorld3(145);
+// const percDenmark = percentageOfWorld3(0.6);
+// const percArgentina = percentageOfWorld3(46);
+// console.log(percRussia, percDenmark, percArgentina);
+
+// ? Function calling other function
+const describePopulation = (country, population) => {
+	const percentageOfWorld = percentageOfWorld3(population);
+	const description = `${country} has ${population} million people which is about ${percentageOfWorld.toFixed(
+		2,
+	)}% of the world`;
+	return description;
+};
+console.log(describePopulation("Russia", 145));
+console.log(describePopulation("Denmark", 0.6));
+console.log(describePopulation("Argentina", 46));
+console.log(describePopulation("China", 1441));
