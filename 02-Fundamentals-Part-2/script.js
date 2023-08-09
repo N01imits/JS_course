@@ -32,14 +32,27 @@ const percentageOfWorld3 = (population) => (population / 7900) * 100;
 // console.log(percRussia, percDenmark, percArgentina);
 
 // ? Function calling other function
-const describePopulation = (country, population) => {
-	const percentageOfWorld = percentageOfWorld3(population);
-	const description = `${country} has ${population} million people which is about ${percentageOfWorld.toFixed(
-		2,
-	)}% of the world`;
-	return description;
-};
-console.log(describePopulation("Russia", 145));
-console.log(describePopulation("Denmark", 0.6));
-console.log(describePopulation("Argentina", 46));
-console.log(describePopulation("China", 1441));
+// const describePopulation = (country, population) => {
+// 	const percentageOfWorld = percentageOfWorld3(population);
+// 	const description = `${country} has ${population} million people which is about ${percentageOfWorld.toFixed(
+// 		2,
+// 	)}% of the world`;
+// 	return description;
+// };
+// console.log(describePopulation("Russia", 145));
+// console.log(describePopulation("Denmark", 0.6));
+// console.log(describePopulation("Argentina", 46));
+// console.log(describePopulation("China", 1441));
+
+// ? Intro to arrays
+const populations = [333, 1411, 218, 168];
+console.log(populations.length === 4);
+
+const percentages = [
+	percentageOfWorld3(populations[0]),
+	percentageOfWorld3(populations[1]),
+	percentageOfWorld3(populations[2]),
+	percentageOfWorld3(populations[populations.length - 1]),
+];
+
+console.log(percentages);
