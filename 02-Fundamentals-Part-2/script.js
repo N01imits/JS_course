@@ -14,7 +14,7 @@
 // 	return (population / 7900) * 100;
 // }
 
-// // ? function Expressions
+//  ? function Expressions
 // const percentageOfWorld2 = function (population) {
 // 	return (population / 7900) * 100;
 // };
@@ -45,14 +45,36 @@ const percentageOfWorld3 = (population) => (population / 7900) * 100;
 // console.log(describePopulation("China", 1441));
 
 // ? Intro to arrays
-const populations = [333, 1411, 218, 168];
-console.log(populations.length === 4);
+// const populations = [333, 1411, 218, 168];
+// console.log(populations.length === 4);
 
-const percentages = [
-	percentageOfWorld3(populations[0]),
-	percentageOfWorld3(populations[1]),
-	percentageOfWorld3(populations[2]),
-	percentageOfWorld3(populations[populations.length - 1]),
-];
+// const percentages = [
+// 	percentageOfWorld3(populations[0]),
+// 	percentageOfWorld3(populations[1]),
+// 	percentageOfWorld3(populations[2]),
+// 	percentageOfWorld3(populations[populations.length - 1]),
+// ];
 
-console.log(percentages);
+// console.log(percentages);
+
+// ? Basic Array Operations (Methods)
+const neighbours = ["Russia", "Kazakhstan", "Norway", "Finland"];
+
+neighbours.push("Utopia");
+console.log(neighbours);
+
+neighbours.pop();
+console.log(neighbours);
+
+// if (!neighbours.includes("Germany")) {
+// 	console.log("Probably not a central European country :D");
+// } else {
+// 	console.log("This is probably a central European country!");
+// }
+
+!neighbours.includes("Germany")
+	? console.log("Probably not a central European country :D")
+	: console.log("This is probably a central European country!");
+
+neighbours[neighbours.indexOf("Norway")] = "Switzerland";
+console.log(neighbours);
