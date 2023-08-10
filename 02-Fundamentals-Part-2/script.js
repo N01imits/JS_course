@@ -25,7 +25,7 @@
 // console.log(percRussia, percDenmark, percArgentina);
 
 // ? arrow function
-const percentageOfWorld3 = (population) => (population / 7900) * 100;
+// const percentageOfWorld3 = (population) => (population / 7900) * 100;
 // const percRussia = percentageOfWorld3(145);
 // const percDenmark = percentageOfWorld3(0.6);
 // const percArgentina = percentageOfWorld3(46);
@@ -58,13 +58,13 @@ const percentageOfWorld3 = (population) => (population / 7900) * 100;
 // console.log(percentages);
 
 // ? Basic Array Operations (Methods)
-const neighbours = ["Russia", "Kazakhstan", "Norway", "Finland"];
+// const neighbours = ["Russia", "Kazakhstan", "Norway", "Finland"];
 
-neighbours.push("Utopia");
-console.log(neighbours);
+// neighbours.push("Utopia");
+// console.log(neighbours);
 
-neighbours.pop();
-console.log(neighbours);
+// neighbours.pop();
+// console.log(neighbours);
 
 // if (!neighbours.includes("Germany")) {
 // 	console.log("Probably not a central European country :D");
@@ -72,9 +72,19 @@ console.log(neighbours);
 // 	console.log("This is probably a central European country!");
 // }
 
-!neighbours.includes("Germany")
-	? console.log("Probably not a central European country :D")
-	: console.log("This is probably a central European country!");
+// !neighbours.includes("Germany")
+// 	? console.log("Probably not a central European country :D")
+// 	: console.log("This is probably a central European country!");
 
-neighbours[neighbours.indexOf("Norway")] = "Switzerland";
-console.log(neighbours);
+// neighbours[neighbours.indexOf("Norway")] = "Switzerland";
+// console.log(neighbours);
+
+// ? intro to object
+
+const myCountry = {
+	country: "Russia",
+	capital: "Moscow",
+	language: "Russian",
+	population: 144,
+	neighbours: ["China", "Norway", "Poland", "Belarus"],
+};
