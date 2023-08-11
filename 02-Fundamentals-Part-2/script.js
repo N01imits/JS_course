@@ -92,23 +92,23 @@
 // console.log(myCountry.population);
 
 // * challenge + challenge 2
-const jonas = {
-	firstName: "Ivan",
-	lastName: "Schmedtmann",
-	age: "",
-	job: "teacher",
-	friends: ["Michael", "Peter", "Steven"],
-	birthYear: 1991,
-	driverLicense: true,
-	calcAge: function () {
-		return (this.age = 2023 - this.birthYear);
-	},
-	getSummary: function () {
-		return `${this.firstName} is a ${this.calcAge()}-years old ${this.job} and he has ${
-			this.driverLicense ? "a" : "no"
-		} driver's license`;
-	},
-};
+// const jonas = {
+// 	firstName: "Ivan",
+// 	lastName: "Schmedtmann",
+// 	age: "",
+// 	job: "teacher",
+// 	friends: ["Michael", "Peter", "Steven"],
+// 	birthYear: 1991,
+// 	driverLicense: true,
+// 	calcAge: function () {
+// 		return (this.age = 2023 - this.birthYear);
+// 	},
+// 	getSummary: function () {
+// 		return `${this.firstName} is a ${this.calcAge()}-years old ${this.job} and he has ${
+// 			this.driverLicense ? "a" : "no"
+// 		} driver's license`;
+// 	},
+// };
 // console.log(jonas);
 // console.log(
 // 	`${jonas["firstName"]} has ${jonas.friends.length} friends, and his best friend is called ${jonas.friends[0]}`,
@@ -130,4 +130,28 @@ const jonas = {
 // console.log(jonas["calcAge"](jonas["birthYear"]));
 
 // * challenge 2
-console.log(jonas.getSummary());
+// console.log(jonas.getSummary());
+
+// ? object methods
+const myCountry = {
+	country: "Russia",
+	capital: "Moscow",
+	language: "Russian",
+	population: 144,
+	neighbours: ["China", "Norway", "Poland", "Belarus"],
+	describe: function () {
+		return `${this.country} has ${this.population} million ${this.language}-speaking people, 
+${this.neighbours.length} neighbouring countries and a capital called ${this.capital}, and this ${
+			this.isIsland === false ? "is not" : "is"
+		} island `;
+	},
+	checkIsland: function () {
+		// this.isIsland = this.neighbours.length === 0 ? true : false;
+		this.isIsland = !Boolean(this.neighbours.length); // think about it
+		return this.isIsland;
+	},
+};
+
+myCountry.checkIsland();
+myCountry.describe();
+console.log(myCountry.describe());
