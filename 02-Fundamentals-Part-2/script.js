@@ -80,38 +80,54 @@
 // console.log(neighbours);
 
 // ? intro to object
-const myCountry = {
-	country: "Russia",
-	capital: "Moscow",
-	language: "Russian",
-	population: 144,
-	neighbours: ["China", "Norway", "Poland", "Belarus"],
-};
+// const myCountry = {
+// 	country: "Russia",
+// 	capital: "Moscow",
+// 	language: "Russian",
+// 	population: 144,
+// 	neighbours: ["China", "Norway", "Poland", "Belarus"],
+// };
 
 // console.log(myCountry);
 // console.log(myCountry.population);
 
-// * challenge
-// const jonas = {
-// 	firstName: "Jonas",
-// 	lastName: "Schmedtmann",
-// 	age: 2023 - 1991,
-// 	job: "teacher",
-// 	friends: ["Michael", "Peter", "Steven"],
-// };
+// * challenge + challenge 2
+const jonas = {
+	firstName: "Ivan",
+	lastName: "Schmedtmann",
+	age: "",
+	job: "teacher",
+	friends: ["Michael", "Peter", "Steven"],
+	birthYear: 1991,
+	driverLicense: true,
+	calcAge: function () {
+		return (this.age = 2023 - this.birthYear);
+	},
+	getSummary: function () {
+		return `${this.firstName} is a ${this.calcAge()}-years old ${this.job} and he has ${
+			this.driverLicense ? "a" : "no"
+		} driver's license`;
+	},
+};
 // console.log(jonas);
 // console.log(
 // 	`${jonas["firstName"]} has ${jonas.friends.length} friends, and his best friend is called ${jonas.friends[0]}`,
 // );
 
 // ? Dot vs. Bracket Notation
-console.log(
-	`${myCountry.country} has ${myCountry.population} million ${myCountry.language}-speaking people, 
-	${myCountry.neighbours.length} neighbouring countries and a capital called ${myCountry.capital}.`,
-);
+// console.log(
+// 	`${myCountry.country} has ${myCountry.population} million ${myCountry.language}-speaking people,
+// 	${myCountry.neighbours.length} neighbouring countries and a capital called ${myCountry.capital}.`,
+// );
 
-myCountry.population += 2;
-console.log(myCountry.population);
+// myCountry.population += 2;
+// console.log(myCountry.population);
 
-myCountry["population"] -= 2;
-console.log(myCountry.population);
+// myCountry["population"] -= 2;
+// console.log(myCountry.population);
+
+// console.log(jonas.calcAge(jonas.birthYear));
+// console.log(jonas["calcAge"](jonas["birthYear"]));
+
+// * challenge 2
+console.log(jonas.getSummary());
