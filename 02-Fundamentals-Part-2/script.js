@@ -133,7 +133,7 @@
 // console.log(jonas.getSummary());
 
 // ? object methods
-const myCountry = {
+/* const myCountry = {
 	country: "Russia",
 	capital: "Moscow",
 	language: "Russian",
@@ -151,7 +151,13 @@ ${this.neighbours.length} neighbouring countries and a capital called ${this.cap
 		return this.isIsland;
 	},
 };
+ */
+// myCountry.checkIsland();
+// myCountry.describe();
+// console.log(myCountry.describe());
 
-myCountry.checkIsland();
-myCountry.describe();
-console.log(myCountry.describe());
+// ? iteration: the for loop
+for (let voter = 1; voter <= 50; voter++) {
+	// voter++ сначала переходит на строку ниже и выводится, а только затем увеличивается
+	console.log(`Voter number ${voter} is currently voting`);
+}
