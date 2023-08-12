@@ -164,17 +164,26 @@ ${this.neighbours.length} neighbouring countries and a capital called ${this.cap
  */
 
 // ? Looping Arrays, Breaking and Continuing
-const populations = [333, 1411, 218, 168];
-const percentages2 = [];
+// const populations = [333, 1411, 218, 168];
+// const percentages2 = [];
 
-function percentageOfWorld1(population) {
-	return (population / 7900) * 100;
-}
+// function percentageOfWorld1(population) {
+// 	return (population / 7900) * 100;
+// }
 
-for (i = 0; i < populations.length; i++) {
-	// данну строку с переменной можно не использовать, а сразу пушить вызов функции в массив
-	// вот так percentages2.push(percentageOfWorld1(populations[i]));
-	const per = percentageOfWorld1(populations[i]);
-	percentages2.push(per);
+// for (i = 0; i < populations.length; i++) {
+// 	// данну строку с переменной можно не использовать, а сразу пушить вызов функции в массив
+// 	// вот так percentages2.push(percentageOfWorld1(populations[i]));
+// 	const per = percentageOfWorld1(populations[i]);
+// 	percentages2.push(per);
+// }
+// console.log(percentages2);
+
+// ? Looping Backwards and Loops in Loops
+const listOfNeighbours = [['Canada', 'Mexico'], ['Spain'], ['Norway', 'Sweden', 'Russia']];
+
+for (let i = 0; i < listOfNeighbours.length; i++) {
+	for (let y = 0; y < listOfNeighbours[i].length; y++) {
+		console.log(`Neighbour: ${listOfNeighbours[i][y]}`);
+	}
 }
-console.log(percentages2);
