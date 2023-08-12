@@ -189,16 +189,27 @@ ${this.neighbours.length} neighbouring countries and a capital called ${this.cap
 // }
 
 const populations = [333, 1411, 218, 168];
-const percentages3 = [];
+// const percentages3 = [];
 
-function percentageOfWorld1(population) {
-	return (population / 7900) * 100;
-}
+// function percentageOfWorld1(population) {
+// 	return (population / 7900) * 100;
+// }
 
-let i = 0;
-while (i < populations.length) {
-	const per = percentageOfWorld1(populations[i]);
-	percentages3.push(per);
-	i++;
-}
-console.log(percentages3);
+// let i = 0;
+// while (i < populations.length) {
+// 	const per = percentageOfWorld1(populations[i]);
+// 	percentages3.push(per);
+// 	i++;
+// }
+// console.log(percentages3);
+
+// * challenge3
+
+const calcAvarage = function (arr) {
+	let sum = 0;
+	for (let i = 0; i < arr.length; i++) {
+		sum += arr[i];
+	}
+	return sum / arr.length;
+};
+console.log(calcAvarage(populations));
