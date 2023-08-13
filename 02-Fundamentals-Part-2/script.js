@@ -205,11 +205,31 @@ const populations = [333, 1411, 218, 168];
 
 // * challenge3
 
-const calcAvarage = function (arr) {
-	let sum = 0;
-	for (let i = 0; i < arr.length; i++) {
-		sum += arr[i];
+// const calcAvarage = function (arr) {
+// 	let sum = 0;
+// 	for (let i = 0; i < arr.length; i++) {
+// 		sum += arr[i];
+// 	}
+// 	return sum / arr.length;
+// };
+// console.log(calcAvarage(populations));
+
+// * challenge4
+
+let test = [12, 5, -5, 0, 4];
+
+const printForecast = function (arr) {
+	let testStr = ''; // преобразует массив в строку
+	let day = 0;
+	for (let i = 0; i < arr.length; ++i) {
+		day = i + 1;
+		testStr += `... ${arr[i]}°C in ${day} day `;
 	}
-	return sum / arr.length;
+	console.log(`${testStr} ...`);
 };
-console.log(calcAvarage(populations));
+printForecast(test);
+
+// let arr = ['apple', 'banana', 'cherry', 'date'];
+// let newArr = arr.join(''); // объединяем элементы массива в одну строку
+// newArr = newArr.replace(/[^\w\s]/g, ''); // заменяем все символы, кроме букв и цифр, на пустую строку
+// console.log(newArr); // выводим объединенную строку в консоль
