@@ -5,6 +5,8 @@ const score1Element = document.getElementById('score--1');
 const current0Element = document.getElementById('current--0');
 const current1Element = document.getElementById('current--1');
 
+const player0Element = document.querySelector('.player--0');
+const player1Element = document.querySelector('.player--1');
 const diceElement = document.querySelector('.dice');
 const btnNew = document.querySelector('.btn--new');
 const btnRoll = document.querySelector('.btn--roll');
@@ -15,7 +17,9 @@ score0Element.textContent = 0;
 score1Element.textContent = 0;
 diceElement.classList.add('hidden');
 
+const scores = [0, 0];
 let currentScore = 0;
+let activePlayer = 0;
 // бросок кости
 btnRoll.addEventListener('click', function () {
 	// 1. генерация случайного броска игральной кости
@@ -27,8 +31,13 @@ btnRoll.addEventListener('click', function () {
 	if (dice !== 1) {
 		//добавить кость к значению
 		currentScore += dice;
-		current0Element.textContent = currentScore;
+		document.getElementById(`current--${activePlayer}`).textContent = currentScore;
 	} else {
 		// переключение игрока если dice === 1
+		document.getElementById(`current--${activePlayer}`).textContent = 0;
+		currentScore = 0;
+		activePlayer = activePlayer === 0 ? 1 : 0;
+		player0Element.classList.toggle('player--active');
+		player1Element.classList.toggle('player--active');
 	}
 });
