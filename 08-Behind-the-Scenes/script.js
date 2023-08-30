@@ -1,4 +1,4 @@
-// 'use strict';
+'use strict';
 
 // function calcAge(birthYear) {
 // 	const age = 2023 - birthYear;
@@ -42,39 +42,72 @@
 // console.log(job);
 // console.log(year);
 
-var me = 'Ilya';
-let job = 'student';
-const year = 1999;
+// var me = 'Ilya';
+// let job = 'student';
+// const year = 1999;
 
 // Функции
-console.log(addDecl(1, 2));
+// console.log(addDecl(1, 2));
 // console.log(addExpr(1, 2)); // при таком вызове var принимает значение undefined
 // console.log(addArrow(1, 2)); // при таком вызове var принимает значение undefined
 
-function addDecl(a, b) {
-	return a + b;
-}
+// function addDecl(a, b) {
+// return a + b;
+// }
 
-const addExpr = function (a, b) {
-	return a + b;
-};
+// const addExpr = function (a, b) {
+// 	return a + b;
+// };
 
-var addArrow = (a, b) => a + b;
+// var addArrow = (a, b) => a + b;
 
 // Example
-console.log(numProducts);
-if (!numProducts) deleteShopCard();
+// console.log(numProducts);
+// if (!numProducts) deleteShopCard();
 
-var numProducts = 10;
+// var numProducts = 10;
 
-function deleteShopCard() {
-	console.log('All products deleted');
-}
+// function deleteShopCard() {
+// 	console.log('All products deleted');
+// }
 
-var x = 1;
-let y = 2;
-const z = 3;
+// var x = 1;
+// let y = 2;
+// const z = 3;
 
-console.log(x === window.x);
-console.log(x === window.z);
-console.log(x === window.y);
+// console.log(x === window.x);
+// console.log(x === window.z);
+// console.log(x === window.y);
+
+// console.log(this);
+
+const calcAge = function (birthYear) {
+	console.log(2037 - birthYear);
+};
+
+// calcAge(1999);
+
+// const calcAgeArrow = birthYear => {
+// 	console.log(2037 - birthYear);
+// 	console.log(this);
+// };
+// calcAgeArrow(1999);
+
+const ilya = {
+	name: 'Ilya',
+	year: 1999,
+	calcAge: function () {
+		console.log(this); // выведет объект
+		console.log(2023 - this.year);
+	},
+};
+ilya.calcAge();
+
+const den = {
+	year: 1990,
+};
+den.calcAge = ilya.calcAge;
+den.calcAge();
+
+const f = ilya.calcAge; // скопировали метод из объекта ilya
+f(); // undefined
