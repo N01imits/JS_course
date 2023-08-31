@@ -114,50 +114,78 @@
 
 // var firstName = 'Ivan';
 // объект ниже - не блочный элемент, поэтому стрелочная функция берез this из глобального окружения
-const ilya = {
-	firstName: 'Ilya',
-	year: 1999,
-	calcAge: function () {
-		// console.log(this); // выведет объект
-		console.log(2023 - this.year);
+// const ilya = {
+// firstName: 'Ilya',
+// year: 1999,
+// calcAge: function () {
+// console.log(this); // выведет объект
+// console.log(2023 - this.year);
 
-		// решение №1(до выхода ES6)
-		// const self = this; // сохраняем объект в переменную
-		// const isMillenial = function () {
-		// 	console.log(self);
-		// 	console.log(self.year >= 1981 && self.year <= 1996);
-		// };
-		// isMillenial();
+// решение №1(до выхода ES6)
+// const self = this; // сохраняем объект в переменную
+// const isMillenial = function () {
+// 	console.log(self);
+// 	console.log(self.year >= 1981 && self.year <= 1996);
+// };
+// isMillenial();
 
-		// решение №2
-		const isMillenial = () => {
-			console.log(this);
-			console.log(this.year >= 1981 && this.year <= 1996);
-		};
-		isMillenial();
-	},
-	greet: function () {
-		console.log(this); // глобальный объект window
-		console.log(`Hey ${this.firstName}`);
-	},
+// решение №2
+// 	const isMillenial = () => {
+// 		console.log(this);
+// 		console.log(this.year >= 1981 && this.year <= 1996);
+// 	};
+// 	isMillenial();
+// },
+// 	greet: function () {
+// 		console.log(this); // глобальный объект window
+// 		console.log(`Hey ${this.firstName}`);
+// 	},
+// };
+
+// ilya.greet();
+// ilya.calcAge();
+
+// // ключевое слово Аргументы
+// const addExpr = function (a, b) {
+// 	console.log(arguments);
+// 	return a + b;
+// };
+// // addExpr(1, 2);
+// // addExpr(1, 2, 3, 4);
+// var addArrow = (a, b) => {
+// 	console.log(arguments);
+
+// 	return a + b;
+// };
+// function addDecl(a, b) {
+// 	console.log(this);
+// 	return a + b;
+// }
+
+// примитивные значения
+let lastName = 'Belyakov';
+let oldLastName = lastName;
+lastName = 'Ivanov';
+console.log(lastName);
+console.log(oldLastName);
+
+//ссылочные типы
+const jessica = {
+	firstName: 'Jessica',
+	lastName: 'Will',
+	age: 23,
+	family: ['Ilya', 'Vasya'],
 };
 
-ilya.greet();
-ilya.calcAge();
+const marriedJessica = jessica;
+marriedJessica.lastName = 'Notwill';
+console.log(jessica);
 
-// ключевое слово Аргументы
-const addExpr = function (a, b) {
-	console.log(arguments);
-	return a + b;
-};
-// addExpr(1, 2);
-// addExpr(1, 2, 3, 4);
-var addArrow = (a, b) => {
-	console.log(arguments);
+// копирование объектов
+const jessicaCopy = Object.assign({}, jessica);
+console.log(jessicaCopy);
+jessicaCopy.age = 24;
 
-	return a + b;
-};
-function addDecl(a, b) {
-	console.log(this);
-	return a + b;
-}
+jessicaCopy.family.push('Ivan');
+console.log(jessica);
+console.log(jessicaCopy);
