@@ -15,6 +15,12 @@ const restaurant = {
 	order: function (starterIndex, mainIndex) {
 		return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
 	},
+	orderDelivery: function ({ timeDelivery = '20:00', address, mainIndex = 0, starterIndex = 0 }) {
+		// указаны значения по умолчанию
+		console.log(
+			`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${timeDelivery}`,
+		);
+	},
 
 	openingHours: {
 		thu: {
@@ -32,7 +38,39 @@ const restaurant = {
 	},
 };
 
-const arr = [1, 2, 3];
+restaurant.orderDelivery({
+	timeDelivery: '22:30',
+	address: 'Via del Sole, 21',
+	mainIndex: 2,
+	starterIndex: 2,
+});
+
+// деструктуризация объектов
+const { name, openingHours, categories } = restaurant;
+console.log(name, openingHours, categories);
+
+const { name: restaurantName, openingHours: hours, categories: tags } = restaurant;
+console.log(restaurantName, hours, tags);
+
+// значения по умаолчанию
+const { starterMenu: starterMenuRestaurant = [], menu: mainMenuRestaurant = [] } = restaurant;
+console.log(starterMenuRestaurant, mainMenuRestaurant);
+
+// мутации переменных
+let a = 111;
+let b = 222;
+
+const obj = { a: 12, b: 34, c: 55 };
+({ a, b } = obj);
+console.log(a, b);
+
+// Влаженные объекты
+const {
+	fri: { open: o, close: c },
+} = openingHours;
+console.log(o, c);
+
+/* const arr = [1, 2, 3];
 const a = arr[0];
 const b = arr[1];
 const c = arr[2];
@@ -48,7 +86,8 @@ console.log(main, secondary);
 // secondary = main;
 // console.log(main, secondary);
 
-[main, secondary] = [secondary, main]; // поменять значения местами
+// поменять значения местами
+[main, secondary] = [secondary, main]; 
 console.log(main, secondary);
 
 // получаем два значения возвращаемые функцией(возвращает в виде массива), в консоль выводятся отдельные значения
@@ -65,3 +104,4 @@ console.log(i, j, k);
 //значения по умолчанию
 const [p = 1, q = 1, r = 1] = [8, 9];
 console.log(p, q, r);
+ */
