@@ -12,16 +12,6 @@ const restaurant = {
 	starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
 	mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-	order: function (starterIndex, mainIndex) {
-		return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
-	},
-	orderDelivery: function ({ timeDelivery = '20:00', address, mainIndex = 0, starterIndex = 0 }) {
-		// указаны значения по умолчанию
-		console.log(
-			`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${timeDelivery}`,
-		);
-	},
-
 	openingHours: {
 		thu: {
 			open: 12,
@@ -36,8 +26,71 @@ const restaurant = {
 			close: 24,
 		},
 	},
+
+	order: function (starterIndex, mainIndex) {
+		return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+	},
+
+	// деструктуризация объекта через функцию
+	orderDelivery: function ({ timeDelivery = '20:00', address, mainIndex = 0, starterIndex = 0 }) {
+		// указаны значения по умолчанию
+		console.log(
+			`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${timeDelivery}`,
+		);
+	},
+
+	orderPasta: function (ing1, ing2, ing3) {
+		console.log(`Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`);
+	},
 };
 
+// * оператор ...
+const arr = [7, 8];
+const badNewArr = [1, 2, 3, arr[0], arr[1]];
+console.log(badNewArr);
+
+const newArr = [1, 2, ...arr];
+console.log(newArr);
+
+console.log(...newArr);
+
+const newMainMenu = [...restaurant.mainMenu, 'Gnocci']; // здесь создан совершенно новый массив
+console.log(newMainMenu);
+
+// копирование массива
+const mainMenuCopy = [...restaurant.mainMenu];
+console.log(mainMenuCopy);
+
+// объединение массивов
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(menu);
+
+// итерируемые: массивы,строки, карты, множества НЕ ОБЪЕКТЫ
+const str = 'Ilya';
+const letters = [...str, ' ', ...'Belyakov'];
+console.log(letters);
+// console.log(`${...str}`); // ТАК НЕ РАБОТАЕТ
+
+// * Реальный пример
+const ingridients = [
+	// prompt("Let's make pasta! Ingredient 1?"),
+	// prompt('Ingredient 2?'),
+	// prompt('Ingredient 3?'),
+];
+
+restaurant.orderPasta(ingridients[0], ingridients[1], ingridients[2]);
+restaurant.orderPasta(...ingridients);
+
+// объекты и оператор ...
+const newRestaurant = { foundedIn: 1984, ...restaurant, founder: 'Guiseppe' };
+console.log(newRestaurant);
+
+const restaurantCopy = { ...restaurant };
+restaurantCopy.name = 'New name';
+console.log(restaurantCopy.name);
+console.log(restaurant.name);
+
+/* // * деструктуризация объектов
 restaurant.orderDelivery({
 	timeDelivery: '22:30',
 	address: 'Via del Sole, 21',
@@ -45,7 +98,10 @@ restaurant.orderDelivery({
 	starterIndex: 2,
 });
 
-// деструктуризация объектов
+restaurant.orderDelivery({
+	address: 'Via del Sole, 21',
+});
+
 const { name, openingHours, categories } = restaurant;
 console.log(name, openingHours, categories);
 
@@ -68,8 +124,9 @@ console.log(a, b);
 const {
 	fri: { open: o, close: c },
 } = openingHours;
-console.log(o, c);
+console.log(o, c); */
 
+// * деструктуризация массивов
 /* const arr = [1, 2, 3];
 const a = arr[0];
 const b = arr[1];
@@ -101,7 +158,6 @@ const nested = [2, 3, [5, 6]];
 const [i, , [j, k]] = nested;
 console.log(i, j, k);
 
-//значения по умолчанию
-const [p = 1, q = 1, r = 1] = [8, 9];
+const [p = 1, q = 1, r = 1] = [8, 9];// значения по умолчанию
 console.log(p, q, r);
  */
