@@ -49,7 +49,37 @@ const restaurant = {
 	},
 };
 
-// * 1) деструктаризация и оператор rest
+console.log('---OR---');
+// * любые типы данных, возрващают также любые типы, короткие замыкания, && и ||
+console.log(666 || 'Ilya');
+console.log(true || 2);
+console.log('' || 13);
+console.log(true || 0);
+console.log(0 || true);
+console.log(undefined || null);
+console.log(null || undefined);
+
+restaurant.numGuests = 0;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
+
+const guests2 = restaurant.numGuests || 12;
+console.log(guests2);
+
+console.log('---And---');
+console.log(0 && 'Joh');
+console.log(1 && 2);
+console.log('aga' && 2 && 3 && null && 'Ilya');
+
+// практический пример
+if (restaurant.orderPizza) {
+	restaurant.orderPizza('mashrooms', 'spinach	');
+}
+
+// тоже самое что и IF сверху
+restaurant.orderPizza && restaurant.orderPizza('mashrooms', 'spinach');
+
+/* // * 1) деструктаризация и оператор rest
 // Spread, потому что ... справа от знака =
 const arr = [1, 2, ...[3, 4]];
 
@@ -79,7 +109,8 @@ const x = [23, 12, 666];
 add(...x); // ? в функции мы распаковываем массив, а в вызове функции опять упаковываем
 
 restaurant.orderPizza('mashrooms', 'onion', 'olives', 'spinach');
-restaurant.orderPizza('mashrooms');
+restaurant.orderPizza('mashrooms'); */
+
 /* // * оператор ...
 const arr = [7, 8];
 const badNewArr = [1, 2, 3, arr[0], arr[1]];
