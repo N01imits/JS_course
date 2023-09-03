@@ -42,9 +42,45 @@ const restaurant = {
 	orderPasta: function (ing1, ing2, ing3) {
 		console.log(`Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`);
 	},
+
+	orderPizza: function (mainIngredient, ...otherIngredients) {
+		console.log(mainIngredient);
+		console.log(otherIngredients);
+	},
 };
 
-// * оператор ...
+// * 1) деструктаризация и оператор rest
+// Spread, потому что ... справа от знака =
+const arr = [1, 2, ...[3, 4]];
+
+// Rest, потому что находится слева от оператора =
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(a, b, others);
+
+const [pizza, , risotto, ...otherFood] = [...restaurant.mainMenu, ...restaurant.starterMenu];
+console.log(pizza, risotto, otherFood);
+
+// Объекты
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays);
+
+// * 2) функции и оператор rest
+const add = function (...numbers) {
+	let sum = 0;
+	for (let i = 0; i < numbers.length; i++) sum += numbers[i];
+	console.log(sum);
+};
+
+add(2, 3);
+add(2, 3, 4, 5, 6);
+add(2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+const x = [23, 12, 666];
+add(...x); // ? в функции мы распаковываем массив, а в вызове функции опять упаковываем
+
+restaurant.orderPizza('mashrooms', 'onion', 'olives', 'spinach');
+restaurant.orderPizza('mashrooms');
+/* // * оператор ...
 const arr = [7, 8];
 const badNewArr = [1, 2, 3, arr[0], arr[1]];
 console.log(badNewArr);
@@ -88,7 +124,7 @@ console.log(newRestaurant);
 const restaurantCopy = { ...restaurant };
 restaurantCopy.name = 'New name';
 console.log(restaurantCopy.name);
-console.log(restaurant.name);
+console.log(restaurant.name); */
 
 /* // * деструктуризация объектов
 restaurant.orderDelivery({
