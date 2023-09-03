@@ -49,6 +49,38 @@ const restaurant = {
 	},
 };
 
+const rest1 = {
+	name: 'Capri',
+	// numGuests: 20,
+	numGuests: 0,
+};
+
+const rest2 = {
+	name: 'La Piazza',
+	owner: 'Giovanni Rossi',
+};
+
+// * оператор ||=
+// rest1.numGuests = rest1.numGuests || 10;
+// rest2.numGuests = rest2.numGuests || 10;
+// rest1.numGuests ||= 10;
+// rest2.numGuests ||= 10;
+
+// * оператор ??= (false = undefined и null)
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
+
+// * оператор &&=
+rest1.owner = rest1.owner && '<ANONIM>';
+rest2.owner = rest2.owner && '<ANONIM>';
+rest2.owner &&= '<anonim>';
+rest1.owner &&= '<anonim>';
+
+console.log(rest1);
+console.log(rest2);
+
+/* 
+// * Оператор ??
 restaurant.numGuests = 0;
 const guests = restaurant.numGuests || 12;
 console.log(guests);
@@ -56,7 +88,7 @@ console.log(guests);
 // false только: undefined and null (нет 0 и '')
 const guestsCorrect = restaurant.numGuests ?? 10;
 console.log(guestsCorrect);
-
+ */
 /* // * короткие прерывания && и ||
 console.log('---OR---');
 // * любые типы данных, возрващают также любые типы, короткие замыкания, && и ||
