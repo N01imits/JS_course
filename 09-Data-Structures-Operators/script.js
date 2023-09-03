@@ -49,6 +49,15 @@ const restaurant = {
 	},
 };
 
+restaurant.numGuests = 0;
+const guests = restaurant.numGuests || 12;
+console.log(guests);
+
+// false только: undefined and null (нет 0 и '')
+const guestsCorrect = restaurant.numGuests ?? 10;
+console.log(guestsCorrect);
+
+/* // * короткие прерывания && и ||
 console.log('---OR---');
 // * любые типы данных, возрващают также любые типы, короткие замыкания, && и ||
 console.log(666 || 'Ilya');
@@ -77,7 +86,7 @@ if (restaurant.orderPizza) {
 }
 
 // тоже самое что и IF сверху
-restaurant.orderPizza && restaurant.orderPizza('mashrooms', 'spinach');
+restaurant.orderPizza && restaurant.orderPizza('mashrooms', 'spinach'); */
 
 /* // * 1) деструктаризация и оператор rest
 // Spread, потому что ... справа от знака =
