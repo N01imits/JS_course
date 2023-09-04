@@ -1,5 +1,22 @@
 'use strict';
 
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+const openingHours = {
+	[weekdays[3]]: {
+		// в [] можно писать любые вычисляемые значения после ES6
+		open: 12,
+		close: 22,
+	},
+	[weekdays[4]]: {
+		open: 11,
+		close: 23,
+	},
+	[`${2 + 3}`]: {
+		open: 0, // Open 24 hours
+		close: 24,
+	},
+};
+
 // Data needed for a later exercise
 const flights =
 	'_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
@@ -12,43 +29,44 @@ const restaurant = {
 	starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
 	mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-	openingHours: {
-		thu: {
-			open: 12,
-			close: 22,
-		},
-		fri: {
-			open: 11,
-			close: 23,
-		},
-		sat: {
-			open: 0, // Open 24 hours
-			close: 24,
-		},
-	},
-
-	order: function (starterIndex, mainIndex) {
+	order(starterIndex, mainIndex) {
 		return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
 	},
 
+	// * before ES6
+	// openingHours: openingHours,
+
+	// * улучшенные литералы объектов(после ES6)
+	openingHours, // js понимает, но если изменить переменную в которой хранится объект, то здесь тоже нужно менять
+
+	// * before ES6
 	// деструктуризация объекта через функцию
-	orderDelivery: function ({ timeDelivery = '20:00', address, mainIndex = 0, starterIndex = 0 }) {
+	// orderDelivery: function ({ timeDelivery = '20:00', address, mainIndex = 0, starterIndex = 0 }) {
+	// 	// указаны значения по умолчанию
+	// 	console.log(
+	// 		`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${timeDelivery}`,
+	// 	);
+	// },
+
+	// * after ES6
+	orderDelivery({ timeDelivery = '20:00', address, mainIndex = 0, starterIndex = 0 }) {
 		// указаны значения по умолчанию
 		console.log(
 			`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${timeDelivery}`,
 		);
 	},
 
-	orderPasta: function (ing1, ing2, ing3) {
+	orderPasta(ing1, ing2, ing3) {
 		console.log(`Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`);
 	},
 
-	orderPizza: function (mainIngredient, ...otherIngredients) {
+	orderPizza(mainIngredient, ...otherIngredients) {
 		console.log(mainIngredient);
 		console.log(otherIngredients);
 	},
 };
 
+/* // * The for-of loop
 const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
 for (const item of menu) console.log(item); // выведет все элементы по порядку
@@ -63,7 +81,7 @@ for (const item of menu.entries()) console.log(item);
 // *  новый способ
 for (const [i, item] of menu.entries()) {
 	console.log(`${i + 1}: ${item}`);
-}
+} */
 
 // console.log([...menu.entries()]);
 
