@@ -49,6 +49,24 @@ const restaurant = {
 	},
 };
 
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const item of menu) console.log(item); // выведет все элементы по порядку
+
+for (const item of menu.entries()) console.log(item);
+
+// * старый способ
+// for (const item of menu.entries()) {
+// 	console.log(`${item[0] + 1}: ${item[1]}`);
+// }
+
+// *  новый способ
+for (const [i, item] of menu.entries()) {
+	console.log(`${i + 1}: ${item}`);
+}
+
+// console.log([...menu.entries()]);
+
 const game = {
 	team1: 'Bayern Munich',
 	team2: 'Borrussia Dortmund',
@@ -90,6 +108,7 @@ const game = {
 	},
 };
 
+/* CODING CHALLENGE #1
 // * 1) Create one player array for each team (variables 'players1' and 'players2')
 // const players1 = [...game.players[0]];
 // const players2 = [...game.players[1]];
@@ -116,10 +135,12 @@ console.log(players1Final);
 
 // * 5) Based on the game.odds object, create one variable for each odd (called'team1', 'draw' and 'team2')
 // const { team1 } = { ...game.odds }; менее читаемый
+// const { team1, x: draw, team2 } = game.odds;
 const {
-	odds: { team1, x, team2 },
+	// деструктуризация объекта дважды
+	odds: { team1, x: draw, team2 }, // draw новая переменная в которой хранится значение из x
 } = game;
-console.log(team1, x, team2);
+console.log(team1, draw, team2);
 
 // * 6) Write a function ('printGoals') that receives an arbitrary number of player
 // * names (not an array) and prints each of them to the console, along with the
@@ -137,6 +158,7 @@ printGoals(...game.scored);
 // * operator.
 team1 < team2 && console.log(`Team 1 is more likely to win`);
 team1 > team2 && console.log(`Team 2 is more likely to win`);
+*/
 
 /* // * Logical Assignment Operators
 const rest1 = {
