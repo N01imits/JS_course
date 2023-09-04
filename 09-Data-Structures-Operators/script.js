@@ -11,7 +11,7 @@ const openingHours = {
 		open: 11,
 		close: 23,
 	},
-	[`${2 + 3}`]: {
+	[weekdays[5]]: {
 		open: 0, // Open 24 hours
 		close: 24,
 	},
@@ -42,7 +42,7 @@ const restaurant = {
 	// * before ES6
 	// деструктуризация объекта через функцию
 	// orderDelivery: function ({ timeDelivery = '20:00', address, mainIndex = 0, starterIndex = 0 }) {
-	// 	// указаны значения по умолчанию
+	// 	 указаны значения по умолчанию
 	// 	console.log(
 	// 		`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${timeDelivery}`,
 	// 	);
@@ -50,6 +50,7 @@ const restaurant = {
 
 	// * after ES6
 	orderDelivery({ timeDelivery = '20:00', address, mainIndex = 0, starterIndex = 0 }) {
+		// необязательно писать слово function
 		// указаны значения по умолчанию
 		console.log(
 			`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${timeDelivery}`,
@@ -66,7 +67,38 @@ const restaurant = {
 	},
 };
 
+// * оператор необязательная цепочка (?.)
+// так мы проверяем существует ли объект, условие не выполнится
+if (restaurant.openingHours && restaurant.openingHours.mon) {
+	console.log(restaurant.openingHours.mon.opem);
+}
+
+// получаем ошибку из-за отсутствия свойств (mon и open)
+// console.log(restaurant.openingHours.mon.open);
+
+// * необязательная цепочка
+console.log(restaurant.openingHours.mon?.open);
+console.log(restaurant.openingHours?.mon?.open);
+
+const wdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+for (const day of wdays) {
+	const open = restaurant.openingHours[day]?.open ?? 'closed'; // оператор ?? работает как || только false = undefined или null
+	console.log(`On ${day}, we open at ${open}`);
+}
+
+// * методы и оператор ?.
+console.log(restaurant.order?.(0, 1) ?? `Method does not exist`);
+console.log(restaurant.orderRisotto?.(0, 1) ?? `Method does not exist`);
+
+// * массивы и оператор ?.
+const users = [{ name: 'Ilya', email: 'hello@ilya.io' }];
+// const users = [];
+
+console.log(users[0]?.email ?? 'User array empty');
+
 /* // * The for-of loop
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
 for (const item of menu) console.log(item); // выведет все элементы по порядку
