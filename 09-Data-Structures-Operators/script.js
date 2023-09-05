@@ -67,7 +67,33 @@ const restaurant = {
 	},
 };
 
-// * оператор необязательная цепочка (?.)
+// Перебор объектов
+
+// * Property Names (ключи)
+const properties = Object.keys(openingHours); // в properties хранится массив
+console.log(properties);
+
+let openStr = `We are open on ${properties.length} days: `;
+
+for (const day of Object.keys(openingHours)) {
+	openStr += `${day}, `; // добавляем к строке дни
+}
+console.log(openStr);
+
+// * Property Values (значения)
+const values = Object.values(openingHours);
+console.log(values); // в консоли будет 3 значения
+
+// * Entrie object (весь объект)
+const entries = Object.entries(openingHours);
+console.log(entries);
+
+// деструктуризация
+for (const [day, { open, close }] of entries) {
+	console.log(`On ${day} we open at ${open} and close at ${close}`);
+}
+
+/*// * оператор необязательная цепочка (?.)
 // так мы проверяем существует ли объект, условие не выполнится
 if (restaurant.openingHours && restaurant.openingHours.mon) {
 	console.log(restaurant.openingHours.mon.opem);
@@ -96,6 +122,7 @@ const users = [{ name: 'Ilya', email: 'hello@ilya.io' }];
 // const users = [];
 
 console.log(users[0]?.email ?? 'User array empty');
+*/
 
 /* // * The for-of loop
 const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
