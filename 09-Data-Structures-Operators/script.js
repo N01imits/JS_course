@@ -67,9 +67,8 @@ const restaurant = {
 	},
 };
 
-// Перебор объектов
-
-// * Property Names (ключи)
+/* // * Перебор объектов
+//* Property Names (ключи)
 const properties = Object.keys(openingHours); // в properties хранится массив
 console.log(properties);
 
@@ -80,21 +79,21 @@ for (const day of Object.keys(openingHours)) {
 }
 console.log(openStr);
 
-// * Property Values (значения)
+//* Property Values (значения)
 const values = Object.values(openingHours);
 console.log(values); // в консоли будет 3 значения
 
-// * Entrie object (весь объект)
+//* Entrie object (весь объект)
 const entries = Object.entries(openingHours);
 console.log(entries);
 
-// деструктуризация
+//* деструктуризация
 for (const [day, { open, close }] of entries) {
 	console.log(`On ${day} we open at ${open} and close at ${close}`);
-}
+} */
 
 /*// * оператор необязательная цепочка (?.)
-// так мы проверяем существует ли объект, условие не выполнится
+//* так мы проверяем существует ли объект, условие не выполнится
 if (restaurant.openingHours && restaurant.openingHours.mon) {
 	console.log(restaurant.openingHours.mon.opem);
 }
@@ -132,12 +131,12 @@ for (const item of menu) console.log(item); // выведет все элеме�
 
 for (const item of menu.entries()) console.log(item);
 
-// * старый способ
+//* старый способ
 // for (const item of menu.entries()) {
 // 	console.log(`${item[0] + 1}: ${item[1]}`);
 // }
 
-// *  новый способ
+//*  новый способ
 for (const [i, item] of menu.entries()) {
 	console.log(`${i + 1}: ${item}`);
 } */
@@ -185,32 +184,76 @@ const game = {
 	},
 };
 
-/* CODING CHALLENGE #1
-// * 1) Create one player array for each team (variables 'players1' and 'players2')
+//* challenge #2
+//* 1) Loop over the game.scored array and print each player name to the console,
+//* along with the goal number (Example: "Goal 1: Lewandowski"
+
+for (const [numberGoal, player] of game.scored.entries()) {
+	console.log(`Goal ${numberGoal + 1}: ${player}`);
+}
+
+// const [players1, players2] = game.players;
+// const allPlayers = [...players1, ...players2];
+// for (const [number, player] of allPlayers.entries()) {
+// 	console.log(`number ${number + 1}: player ${player}`);
+// }
+
+//* 2) Use a loop to calculate the average odd and log it to the console
+//* (We already studied how to calculate averages, you can go check if you don't remember)
+
+//* новый способ
+const odds = Object.values(game.odds);
+let avg = 0;
+for (const odd of odds) avg += odd;
+avg /= odds.length;
+console.log(avg);
+
+//* старый способ
+// for (let i = 0; i < odds.length; i++) {
+// 	avg += odds[i];
+// }
+// avg /= odds.length;
+// console.log(avg);
+
+//* Print the 3 odds to the console, but in a nice formatted way, exactly like this:
+//* Odd of victory Bayern Munich: 1.33
+//* Odd of draw: 3.25
+//* Odd of victory Borussia Dortmund: 6.5
+//* Get the team names directly from the game object, don't hardcode them
+//* (except for "draw"). Hint: Note how the odds and the game objects have the
+//* same property names
+
+for (const [team, odd] of Object.entries(game.odds)) {
+	const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
+	console.log(`Odd of ${teamStr}: ${odd}`);
+}
+
+/* //* CODING CHALLENGE #1
+/// * 1) Create one player array for each team (variables 'players1' and 'players2')
 // const players1 = [...game.players[0]];
 // const players2 = [...game.players[1]];
 const [players1, players2] = game.players;
 console.log(players1, players2);
 
-// * 2) The first player in any player array is the goalkeeper and the others are field
-//  * players. For Bayern Munich (team 1) create one variable ('gk') with the
-//  * goalkeeper's name, and one array ('fieldPlayers') with all the remaining 10
-//  * field players
+//* 2) The first player in any player array is the goalkeeper and the others are field
+//* players. For Bayern Munich (team 1) create one variable ('gk') with the
+//* goalkeeper's name, and one array ('fieldPlayers') with all the remaining 10
+//* field players
 // const [gk, ...fieldPlayers] = [...game.players[0]];
 const [gk, ...fieldPlayers] = players1;
 console.log(gk, fieldPlayers);
 
-// * 3) Create an array 'allPlayers' containing all players of both teams (22 players)
+//* 3) Create an array 'allPlayers' containing all players of both teams (22 players)
 const allPlayers = [...players1, ...players2];
 console.log(allPlayers);
 
-// * 4) During the game, Bayern Munich (team 1) used 3 substitute players. So create a
-// *  new array ('players1Final') containing all the original team1 players plus
-// * 'Thiago', 'Coutinho' and 'Perisic'
+//* 4) During the game, Bayern Munich (team 1) used 3 substitute players. So create a
+//*  new array ('players1Final') containing all the original team1 players plus
+//* 'Thiago', 'Coutinho' and 'Perisic'
 const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
 console.log(players1Final);
 
-// * 5) Based on the game.odds object, create one variable for each odd (called'team1', 'draw' and 'team2')
+//* 5) Based on the game.odds object, create one variable for each odd (called'team1', 'draw' and 'team2')
 // const { team1 } = { ...game.odds }; менее читаемый
 // const { team1, x: draw, team2 } = game.odds;
 const {
@@ -219,9 +262,9 @@ const {
 } = game;
 console.log(team1, draw, team2);
 
-// * 6) Write a function ('printGoals') that receives an arbitrary number of player
-// * names (not an array) and prints each of them to the console, along with the
-// * number of goals that were scored in total (number of player names passed in)
+//* 6) Write a function ('printGoals') that receives an arbitrary number of player
+//* names (not an array) and prints each of them to the console, along with the
+//* number of goals that were scored in total (number of player names passed in)
 const printGoals = function (...players) {
 	console.log(players);
 	console.log(`${players.length} goals were scored`);
@@ -230,14 +273,15 @@ const printGoals = function (...players) {
 // printGoals('Davies', 'Muller');
 printGoals(...game.scored);
 
-// * 7) The team with the lower odd is more likely to win. Print to the console which
-// * team is more likely to win, without using an if/else statement or the ternary
-// * operator.
+//* 7) The team with the lower odd is more likely to win. Print to the console which
+//* team is more likely to win, without using an if/else statement or the ternary
+//* operator.
 team1 < team2 && console.log(`Team 1 is more likely to win`);
 team1 > team2 && console.log(`Team 2 is more likely to win`);
 */
 
-/* // * Logical Assignment Operators
+/* 
+//* Logical Assignment Operators
 const rest1 = {
 	name: 'Capri',
 	// numGuests: 20,
@@ -249,17 +293,17 @@ const rest2 = {
 	owner: 'Giovanni Rossi',
 };
 
-* оператор ||=
+//* оператор ||=
 // rest1.numGuests = rest1.numGuests || 10;
 // rest2.numGuests = rest2.numGuests || 10;
 // rest1.numGuests ||= 10;
 // rest2.numGuests ||= 10;
 
-* оператор ??= (false = undefined и null)
+//* оператор ??= (false = undefined и null)
 rest1.numGuests ??= 10;
 rest2.numGuests ??= 10;
 
-* оператор &&=
+//* оператор &&=
 rest1.owner = rest1.owner && '<ANONIM>';
 rest2.owner = rest2.owner && '<ANONIM>';
 rest2.owner &&= '<anonim>';
@@ -269,7 +313,7 @@ console.log(rest1);
 console.log(rest2); */
 
 /* 
-// * Оператор ??
+//* Оператор ??
 restaurant.numGuests = 0;
 const guests = restaurant.numGuests || 12;
 console.log(guests);
@@ -279,9 +323,10 @@ const guestsCorrect = restaurant.numGuests ?? 10;
 console.log(guestsCorrect);
  */
 
-/* // * короткие прерывания && и ||
+/* 
+//* короткие прерывания && и ||
 console.log('---OR---');
-// * любые типы данных, возрващают также любые типы, короткие замыкания, && и ||
+//* любые типы данных, возрващают также любые типы, короткие замыкания, && и ||
 console.log(666 || 'Ilya');
 console.log(true || 2);
 console.log('' || 13);
@@ -325,7 +370,7 @@ console.log(pizza, risotto, otherFood);
 const { sat, ...weekdays } = restaurant.openingHours;
 console.log(weekdays);
 
-// * 2) функции и оператор rest
+//* 2) функции и оператор rest
 const add = function (...numbers) {
 	let sum = 0;
 	for (let i = 0; i < numbers.length; i++) sum += numbers[i];
@@ -342,7 +387,7 @@ add(...x); // ? в функции мы распаковываем массив, 
 restaurant.orderPizza('mashrooms', 'onion', 'olives', 'spinach');
 restaurant.orderPizza('mashrooms'); */
 
-/* // * оператор spread ...
+/* //* оператор spread ...
 const arr = [7, 8];
 const badNewArr = [1, 2, 3, arr[0], arr[1]];
 console.log(badNewArr);
@@ -369,7 +414,7 @@ const letters = [...str, ' ', ...'Belyakov'];
 console.log(letters);
 // console.log(`${...str}`); // ТАК НЕ РАБОТАЕТ
 
-// * Реальный пример
+//* Реальный пример
 const ingridients = [
 	// prompt("Let's make pasta! Ingredient 1?"),
 	// prompt('Ingredient 2?'),
@@ -424,7 +469,7 @@ const {
 } = openingHours;
 console.log(o, c); */
 
-// * деструктуризация массивов
+//* деструктуризация массивов
 /* const arr = [1, 2, 3];
 const a = arr[0];
 const b = arr[1];
