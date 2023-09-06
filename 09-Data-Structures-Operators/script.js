@@ -67,6 +67,28 @@ const restaurant = {
 	},
 };
 
+//* SETS
+const ordersSet = new Set(['Pizza', 'Pizza', 'Risotto', 'Pasta', 'Risotto']);
+console.log(ordersSet);
+
+console.log(new Set('Ilya'));
+
+console.log(ordersSet.size);
+console.log(ordersSet.has('Pizza'));
+console.log(ordersSet.has('Milk'));
+ordersSet.add('Garlic Bread');
+ordersSet.delete('Risotto');
+console.log(ordersSet);
+// ordersSet.clear();
+
+for (const order of ordersSet) console.log(order);
+
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Waiter', 'Chef'];
+const staffUnique = [...new Set(staff)]; // spread оператор для преобразования в массив
+console.log(staffUnique);
+
+console.log(new Set(staff).size);
+
 /* // * Перебор объектов
 //* Property Names (ключи)
 const properties = Object.keys(openingHours); // в properties хранится массив
@@ -184,7 +206,7 @@ const game = {
 	},
 };
 
-//* challenge #2
+/* //* challenge #2
 //* 1) Loop over the game.scored array and print each player name to the console,
 //* along with the goal number (Example: "Goal 1: Lewandowski"
 
@@ -227,6 +249,15 @@ for (const [team, odd] of Object.entries(game.odds)) {
 	const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
 	console.log(`Odd of ${teamStr}: ${odd}`);
 }
+
+//* BONUS
+//* Create an object called 'scorers' which contains the names of the players who scored as properties, and the number of goals as the value.
+//* In this game, it will look like this:
+const scorers = {};
+for (const player of game.scored) {
+	scorers[player] ? scorers[player]++ : (scorers[player] = 1);
+}
+console.log(scorers); */
 
 /* //* CODING CHALLENGE #1
 /// * 1) Create one player array for each team (variables 'players1' and 'players2')
