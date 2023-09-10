@@ -67,6 +67,67 @@ const restaurant = {
 	},
 };
 
+//* Working With Strings - Part 2
+const airline = 'TAP Air Portugal';
+
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+
+//* исправление имени
+const passenger = 'ilYa';
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect = passengerLower[0].toUpperCase() + passengerLower.slice(1);
+console.log(passengerCorrect);
+
+//* сравнение email
+const email = 'hello@jonas.io';
+const loginEmail = '   HeLlO@JoNaS.io  \n';
+
+// const lowerEmail = loginEmail.toLowerCase();
+// const trimmedEmail = lowerEmail.trim();
+
+const normilizeEmail = loginEmail.toLowerCase().trim();
+console.log(normilizeEmail);
+console.log(email === normilizeEmail);
+
+//* замена
+const priceGB = '288,97€';
+const priceUS = priceGB.replace('€', '$').replace(',', '.');
+console.log(priceUS);
+
+const announcement = 'All passengers come to boarding door 23. Boarding door 23!';
+
+// console.log(announcement.replace('door', 'gate')); // заменит только один door который встретится раньше
+// console.log(announcement.replaceAll('door', 'gate')); //* уже работает
+
+console.log(announcement.replace(/door/g, 'gate')); // регулярное выражение, g - global
+
+//* Booleans
+const plane = 'Airbus A320neo';
+console.log(plane.includes('A320'));
+console.log(plane.startsWith('B'));
+console.log(plane.startsWith('Airb'));
+
+if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+	console.log('Part of new airbus family');
+}
+
+//* практические примеры
+const checkBaggage = function (items) {
+	const baggage = items.toLowerCase();
+	if (baggage.includes('knife') || baggage.includes('gun')) {
+		console.log('You are NOT allowed on board');
+	} else {
+		console.log('Welcome aboard!');
+	}
+};
+
+checkBaggage('I have Laptop, and pocket Knife');
+checkBaggage('Socks and camera');
+checkBaggage('Got some snacks and a gun for protection');
+
+/*
+//*Working With Strings - Part 1
 const airline = 'TAP Air Portugal';
 const plane = 'A320';
 
@@ -101,7 +162,7 @@ checkMiddleSeat('12E');
 console.log(new String('Ilya'));
 console.log(typeof new String('Ilya'));
 
-console.log(typeof new String('Ilya').slice(0));
+console.log(typeof new String('Ilya').slice(0)); */
 
 /* //* Coding Challenge #3
 const gameEvents = new Map([
