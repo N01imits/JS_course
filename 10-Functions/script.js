@@ -19,7 +19,7 @@ createBooking('LH123', 30, 800);
 createBooking('LH123', 20);
  */
 
-/* //* How passing arguments works: value vs reference
+//* How passing arguments works: value vs reference
 const flight = 'LH234';
 const ilya = {
 	name: 'Ilya Belyakov',
@@ -51,4 +51,6 @@ const newPassport = function (person) {
 
 newPassport(ilya);
 checkIn(flight, ilya);
- */
+
+//* first-class and higher-order functions
+// Смотри в тетради, либо в презентации
