@@ -154,3 +154,50 @@ book.apply(swiss, flightData);
 console.log(swiss);
 
 book.call(swiss, ...flightData);
+
+//* bind метод
+//* bind возвращает новуб функцию в которой this всегда указвает на объект eurowings
+const bookEW = book.bind(eurowings);
+const bookLH = book.bind(lufthansa);
+const bookLX = book.bind(swiss);
+
+bookEW(228, 'Steven Williams');
+
+//* теперь при вызове этой функции, this всегда привязан к eurowings, а номер рейса всегда 23
+//* теперь при вызове функции нужно указывать только name
+const bookEW23 = book.bind(eurowings, 23);
+bookEW23('Jonas Bel ');
+
+//* C прослушиванием событий
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+	console.log(this);
+
+	this.planes++;
+	console.log(this.planes);
+};
+
+document.querySelector('.buy').addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+//* Частичное применение - означает: предварительно задать параметры
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200));
+
+const addVAT = addTax.bind(null, 0.23); // null т.к нам не важно на что указывает this(в стрелочной функции вообще нет this)
+console.log(addVAT(100));
+console.log(addVAT(250));
+
+//* функция возвращает функцию без bind привязки
+const addTaxRate = function (rate) {
+	return function (value) {
+		return value + value * rate;
+	};
+};
+
+const addVAT2 = addTaxRate(0.23);
+console.log(addVAT2(100));
+
+//* стрелочная функция
+// const addTaxRate = rate => value => value + value * rate;
+// const addVAT2 = addTaxRate(0.23);
+// console.log(addVAT2(100));
