@@ -52,7 +52,7 @@ const newPassport = function (person) {
 newPassport(ilya);
 checkIn(flight, ilya); */
 
-//* first-class and higher-order functions
+/* //* first-class and higher-order functions
 // Смотри в тетради, либо в презентации
 
 //* Functions Accepting Callback Functions
@@ -83,4 +83,23 @@ const high5 = function () {
 	console.log('hello');
 };
 
-['Ilya', 'Denis'].forEach(high5);
+['Ilya', 'Denis'].forEach(high5); */
+
+//* functions returning functions
+const greet = function (greeting) {
+	return function (name) {
+		console.log(`${greeting} ${name}`);
+	};
+};
+
+const gtreeterHey = greet('Hey');
+gtreeterHey('Jonas');
+gtreeterHey('Ilya');
+
+greet('Hello')('f');
+
+const greetArr = greeting => name => {
+	console.log(`${greeting} ${name}`);
+};
+
+greetArr('Hey')('Ilya');
