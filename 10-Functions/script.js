@@ -85,7 +85,7 @@ const high5 = function () {
 
 ['Ilya', 'Denis'].forEach(high5); */
 
-//* functions returning functions
+/* //* functions returning functions
 const greet = function (greeting) {
 	return function (name) {
 		console.log(`${greeting} ${name}`);
@@ -102,4 +102,55 @@ const greetArr = greeting => name => {
 	console.log(`${greeting} ${name}`);
 };
 
-greetArr('Hey')('Ilya');
+greetArr('Hey')('Ilya'); */
+
+//* The call and apply methods
+const lufthansa = {
+	airline: 'Lufthansa',
+	iataCode: 'LH',
+	bookings: [],
+	// book: function() {}
+	book(flightNum, name) {
+		console.log(`${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`);
+
+		this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+	},
+};
+
+lufthansa.book(223, 'Ilya Belyakov');
+lufthansa.book(223, 'Ivan');
+console.log(lufthansa);
+
+const eurowings = {
+	airline: 'Eurowings',
+	iataCode: 'EW',
+	bookings: [],
+};
+
+const book = lufthansa.book;
+
+//! ошибка тк this указывает на глобальный объект, в строгом режиме this =  undefined
+// book(23, 'Sarah');
+
+//* нужно исрльзовать метод call для того чтобы все работало
+book.call(eurowings, 23, 'Sarah');
+console.log(eurowings);
+
+book.call(lufthansa, 23, 'Sarah Williams');
+
+const swiss = {
+	airline: 'Swiss',
+	iataCode: 'LX',
+	bookings: [],
+};
+
+book.call(swiss, 123, 'Ilya Belyakov');
+
+//* Apply метод делает тоже самое что и call, только берет данные из массива
+//* данный метод не используется в современном JS
+//* так как можно использовать call и деструктуризировать массив чере ...
+const flightData = [454, 'Alexandr Petrov'];
+book.apply(swiss, flightData);
+console.log(swiss);
+
+book.call(swiss, ...flightData);
