@@ -231,7 +231,8 @@ console.log(addVAT2(100));
 
 // BONUS TEST DATA 1: [5, 2, 3]
 // BONUS TEST DATA 2: [1, 5, 3, 9, 6, 1]
-const poll = {
+
+/* const poll = {
 	question: 'What is your favourite programming language?',
 	options: ['0: JavaScript', '1: Python', '2: Rust', '3:C++'],
 	// This generates [0, 0, 0, 0]. More in the next section!
@@ -261,4 +262,11 @@ document.querySelector('.poll').addEventListener('click', poll.registerNewAnswer
 poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
 poll.displayResults.call({ answers: [5, 2, 3] });
 poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
-poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] });
+poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }); */
+
+//* mmediately Invoked Function Expressions (IIFE)
+(function () {
+	console.log('this will never run again');
+})();
+
+(() => console.log('This will ALSO never run again'))();
