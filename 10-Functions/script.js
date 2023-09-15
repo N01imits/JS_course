@@ -265,8 +265,26 @@ poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
 poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }); */
 
 //* mmediately Invoked Function Expressions (IIFE)
-(function () {
+/* (function () {
 	console.log('this will never run again');
 })();
 
-(() => console.log('This will ALSO never run again'))();
+(() => console.log('This will ALSO never run again'))(); */
+
+//* Closures
+const secureBooking = function () {
+	let passengerCount = 0;
+
+	return function () {
+		passengerCount++;
+		console.log(`${passengerCount} passengers`);
+	};
+};
+
+const booker = secureBooking();
+
+booker();
+booker();
+booker();
+
+console.dir(booker);
