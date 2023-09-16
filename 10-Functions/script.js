@@ -272,7 +272,7 @@ poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }); */
 (() => console.log('This will ALSO never run again'))(); */
 
 //* Closures
-const secureBooking = function () {
+/* const secureBooking = function () {
 	let passengerCount = 0;
 
 	return function () {
@@ -288,3 +288,47 @@ booker();
 booker();
 
 console.dir(booker);
+ */
+
+//* More Closure Examples
+//* example 1
+let f;
+
+const g = function () {
+	const a = 23;
+	f = function () {
+		console.log(a * 2);
+	};
+};
+
+g();
+f();
+console.dir(f);
+
+const h = function () {
+	const b = 777;
+	f = function () {
+		console.log(b * 2);
+	};
+};
+
+//* переназначаем переменную
+h();
+f();
+console.dir(f);
+
+//* example 2
+const boardPassengers = function (n, wait) {
+	const perGroup = n / 3;
+
+	//? функция ниже не зависимо срабатывает от вызова родительской функции
+	setTimeout(function () {
+		console.log(`We are now boarding all ${n} passengers`);
+		console.log(`There are 3 groups, each with ${perGroup} passengers`);
+	}, wait * 1000);
+
+	console.log(`Will start boarding in ${wait} seconds`);
+};
+
+const perGroup = 1000; // данная переменная никак не влияет на переменную внутри функции, т.к происходит замыкание
+boardPassengers(240, 5);
