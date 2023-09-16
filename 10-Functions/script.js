@@ -291,7 +291,7 @@ console.dir(booker);
  */
 
 //* More Closure Examples
-//* example 1
+/* //* example 1
 let f;
 
 const g = function () {
@@ -332,3 +332,15 @@ const boardPassengers = function (n, wait) {
 
 const perGroup = 1000; // данная переменная никак не влияет на переменную внутри функции, т.к происходит замыкание
 boardPassengers(240, 5);
+ */
+
+//* //* coding challenge #2
+
+(function () {
+	const header = document.querySelector('h1');
+	header.style.color = 'red';
+
+	document.querySelector('body').addEventListener('click', function () {
+		header.style.color = 'blue';
+	});
+})();
