@@ -373,9 +373,8 @@ console.log(totalDepositsUSD);
  */
 
 //* coding challenge #3
-// Rewrite the 'calcAverageHumanAge' function from Challenge #2, but this time
+/* // Rewrite the 'calcAverageHumanAge' function from Challenge #2, but this time
 // as an arrow function, and using chaining!
-
 const calcAverageHumanAge = ages =>
 	ages
 		.map(age => (age <= 2 ? 2 * age : 16 + age * 4))
@@ -386,3 +385,13 @@ const dogsAges1 = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
 const dogsAges2 = calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
 
 console.log(dogsAges1, dogsAges2);
+ */
+
+//* The find Method
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const firstDrawal = movements.find(mov => mov < 0);
+console.log(movements);
+console.log(firstDrawal);
+
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(account);
