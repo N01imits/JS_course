@@ -173,6 +173,26 @@ btnTransfer.addEventListener('click', function (e) {
 	}
 });
 
+//* The findIndex Method и удаление аккаунта
+btnClose.addEventListener('click', function (e) {
+	e.preventDefault();
+
+	if (
+		inputCloseUsername.value === currentAccount.username &&
+		Number(inputClosePin.value) === currentAccount.pin
+	) {
+		const index = accounts.findIndex(acc => acc.username === currentAccount.username);
+
+		//? удаляем аккаунт
+		accounts.splice(index, 1);
+
+		//? скрываем интерфейс
+		containerApp.style.opacity = 0;
+	}
+
+	inputCloseUsername.value = inputClosePin.value = '';
+});
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 //* LECTURES
