@@ -81,9 +81,9 @@ const displayMovements = function (movements) {
 };
 
 //* balance в bankist
-const calcDisplayBalance = function (movements) {
-	const balance = movements.reduce((acc, mov) => acc + mov, 0);
-	labelBalance.textContent = `${balance}€`;
+const calcDisplayBalance = function (acc) {
+	acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+	labelBalance.textContent = `${acc.balance}€`;
 };
 
 //* inc, out, interest
@@ -115,6 +115,17 @@ const createUsernames = function (accs) {
 
 createUsernames(accounts);
 
+const updateUI = function (acc) {
+	//? display movements
+	displayMovements(acc.movements);
+
+	//? display balance
+	calcDisplayBalance(acc);
+
+	//? display summary
+	calcDisplaySummary(acc);
+};
+
 //* Implementing Login
 let currentAccount;
 
@@ -129,18 +140,36 @@ btnLogin.addEventListener('click', function (e) {
 
 		containerApp.style.opacity = 100;
 
+		updateUI(currentAccount);
+
 		//? очистка полей ввоад
 		inputLoginUsername.value = inputLoginPin.value = '';
 		inputLoginPin.blur();
 
-		//? display movements
-		displayMovements(currentAccount.movements);
+		//? обновление интерфейса
+		updateUI(currentAccount);
+	}
+});
 
-		//? display balance
-		calcDisplayBalance(currentAccount.movements);
+//* implementing transfers
+btnTransfer.addEventListener('click', function (e) {
+	e.preventDefault();
+	const ammount = Number(inputTransferAmount.value);
+	const receiverAcc = accounts.find(acc => acc.username === inputTransferTo.value);
+	inputTransferAmount.value = inputTransferTo.value = '';
 
-		//? display summary
-		calcDisplaySummary(currentAccount);
+	if (
+		ammount > 0 &&
+		receiverAcc &&
+		currentAccount.balance >= ammount &&
+		receiverAcc?.username !== currentAccount.username
+	) {
+		//? перевод денег
+		currentAccount.movements.push(-ammount);
+		receiverAcc.movements.push(ammount);
+
+		//? обновление интерфейса
+		updateUI(currentAccount);
 	}
 });
 
