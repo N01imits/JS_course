@@ -92,10 +92,14 @@ const calcDisplayBalance = function (acc) {
 
 //* inc, out, interest
 const calcDisplaySummary = function (acc) {
-	const incomes = acc.movements.filter(mov => mov > 0).reduce((acc, mov) => acc + mov, 0);
+	const incomes = acc.movements
+		.filter(mov => mov > 0)
+		.reduce((acc, mov) => acc + mov, 0);
 	labelSumIn.textContent = `${incomes}€`;
 
-	const out = acc.movements.filter(mov => mov < 0).reduce((acc, mov) => acc + mov, 0);
+	const out = acc.movements
+		.filter(mov => mov < 0)
+		.reduce((acc, mov) => acc + mov, 0);
 	labelSumOut.textContent = `${Math.abs(out)}€`;
 
 	const interest = acc.movements
@@ -137,10 +141,14 @@ btnLogin.addEventListener('click', function (e) {
 	//? предотвратить форму от отправки
 	e.preventDefault();
 
-	currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value);
+	currentAccount = accounts.find(
+		acc => acc.username === inputLoginUsername.value,
+	);
 
 	if (currentAccount?.pin === Number(inputLoginPin.value)) {
-		labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(' ')[0]}`;
+		labelWelcome.textContent = `Welcome back, ${
+			currentAccount.owner.split(' ')[0]
+		}`;
 
 		containerApp.style.opacity = 100;
 
@@ -159,7 +167,9 @@ btnLogin.addEventListener('click', function (e) {
 btnTransfer.addEventListener('click', function (e) {
 	e.preventDefault();
 	const ammount = Number(inputTransferAmount.value);
-	const receiverAcc = accounts.find(acc => acc.username === inputTransferTo.value);
+	const receiverAcc = accounts.find(
+		acc => acc.username === inputTransferTo.value,
+	);
 	inputTransferAmount.value = inputTransferTo.value = '';
 
 	if (
@@ -201,7 +211,9 @@ btnClose.addEventListener('click', function (e) {
 		inputCloseUsername.value === currentAccount.username &&
 		Number(inputClosePin.value) === currentAccount.pin
 	) {
-		const index = accounts.findIndex(acc => acc.username === currentAccount.username);
+		const index = accounts.findIndex(
+			acc => acc.username === currentAccount.username,
+		);
 
 		//? удаляем аккаунт
 		accounts.splice(index, 1);
@@ -579,7 +591,7 @@ console.log(movements);
  */
 
 //* More Ways of Creating and Filling Arrays
-const arr = [1, 2, 3, 4, 5, 6, 7];
+/* const arr = [1, 2, 3, 4, 5, 6, 7];
 console.log(new Array(1, 2, 3, 4, 5, 6, 7));
 
 //? пустой массив + fill метод
@@ -613,3 +625,75 @@ labelBalance.addEventListener('click', function () {
 	const movementsUI2 = [...document.querySelectorAll('.movements__value')];
 	console.log(movementsUI2);
 });
+ */
+
+//* Array Methods Practice
+// 1. ex
+//? получаем вложенный массив из массива объектов
+// const bankDepositSum = accounts.map(acc => acc.movements).flat();
+// console.log(bankDepositSum);
+const bankDepositSum = accounts
+	.flatMap(acc => acc.movements)
+	.filter(mov => mov > 0)
+	.reduce((sum, curr) => sum + curr, 0);
+console.log(bankDepositSum);
+
+// 2. ex
+// const numDeposits1000 = accounts.flatMap(acc => acc.movements).filter(mov => mov >= 1000).length;
+
+const numDeposits1000 = accounts
+	.flatMap(acc => acc.movements)
+	// .reduce((count, cur) => (cur >= 1000 ? count + 1 : count), 0);
+	.reduce((count, cur) => (cur >= 1000 ? ++count : count), 0);
+
+console.log(numDeposits1000);
+
+//? префиксная форма ++
+let a = 10;
+console.log(++a);
+console.log(a);
+
+// 3. ex
+//? создание объекта
+const { deposits, withdrawals } = accounts
+	.flatMap(acc => acc.movements)
+	.reduce(
+		(sums, cur) => {
+			// cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
+			sums[cur > 0 ? 'deposits' : 'withdrawals'] += cur;
+			return sums;
+		},
+		{ deposits: 0, withdrawals: 0 },
+	);
+console.log(deposits, withdrawals);
+
+// 4. ex
+//? this is a nice title
+const convertTitleCase = function (title) {
+	const capitalization = str => str[0].toUpperCase() + str.slice(1);
+	const exceptions = [
+		'a',
+		'and',
+		'is',
+		'an',
+		'the',
+		'but',
+		'or',
+		'on',
+		'in',
+		'with',
+	];
+
+	const titleCase = title
+		.toLowerCase()
+		.split(' ')
+		.map(word =>
+			exceptions.includes(word) ? word : word[0].toUpperCase() + word.slice(1),
+		)
+		.join(' ');
+	return capitalization(titleCase);
+};
+
+console.log(convertTitleCase('this is a nice title'));
+console.log(convertTitleCase('this is a LONG title but not too long'));
+console.log(convertTitleCase('and here is another title with an EXAMPLE'));
