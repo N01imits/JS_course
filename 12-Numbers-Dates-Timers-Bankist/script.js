@@ -94,7 +94,7 @@ const displayMovements = function (movements, sort = false) {
         <div class="movements__type movements__type--${type}">${
 			i + 1
 		} ${type}</div>
-        <div class="movements__value">${mov}€</div>
+        <div class="movements__value">${mov.toFixed(2)}€</div>
       </div>
     `;
 
@@ -104,19 +104,19 @@ const displayMovements = function (movements, sort = false) {
 
 const calcDisplayBalance = function (acc) {
 	acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-	labelBalance.textContent = `${acc.balance}€`;
+	labelBalance.textContent = `${acc.balance.toFixed(2)}€`;
 };
 
 const calcDisplaySummary = function (acc) {
 	const incomes = acc.movements
 		.filter(mov => mov > 0)
 		.reduce((acc, mov) => acc + mov, 0);
-	labelSumIn.textContent = `${incomes}€`;
+	labelSumIn.textContent = `${incomes.toFixed(2)}€`;
 
 	const out = acc.movements
 		.filter(mov => mov < 0)
 		.reduce((acc, mov) => acc + mov, 0);
-	labelSumOut.textContent = `${Math.abs(out)}€`;
+	labelSumOut.textContent = `${Math.abs(out).toFixed(2)}€`;
 
 	const interest = acc.movements
 		.filter(mov => mov > 0)
@@ -126,7 +126,7 @@ const calcDisplaySummary = function (acc) {
 			return int >= 1;
 		})
 		.reduce((acc, int) => acc + int, 0);
-	labelSumInterest.textContent = `${interest}€`;
+	labelSumInterest.textContent = `${interest.toFixed(2)}€`;
 };
 
 const createUsernames = function (accs) {
@@ -182,7 +182,7 @@ btnLogin.addEventListener('click', function (e) {
 
 btnTransfer.addEventListener('click', function (e) {
 	e.preventDefault();
-	const amount = +inputTransferAmount.value;
+	const amount = Math.floor(inputTransferAmount.value);
 	const receiverAcc = accounts.find(
 		acc => acc.username === inputTransferTo.value,
 	);
@@ -253,7 +253,7 @@ btnSort.addEventListener('click', function (e) {
 // LECTURES
 
 //* Converting and Checking Numbers
-console.log(23 === 23.0);
+/* console.log(23 === 23.0);
 console.log(0.2 + 0.1);
 console.log(0.2 + 0.1 === 0.3);
 
@@ -284,3 +284,51 @@ console.log(Number.isSafeInteger(23));
 console.log(Number.isSafeInteger('23'));
 console.log(Number.isSafeInteger(23.0));
 console.log(Number.isSafeInteger(23.0 / 0));
+ */
+
+//* Math and Rounding
+console.log(Math.sqrt(25));
+console.log(25 ** (1 / 2));
+console.log(8 ** (1 / 3));
+
+console.log(Math.max(1, 2, 3, 4, 5, 6, 7, 8));
+console.log(Math.max(1, '2', 3, '4', 5, 6, 7, '8'));
+console.log(Math.max(1, '2', 3, '4', 5, 6, 7, '8px'));
+
+console.log(Math.min(-1, '2', 3, -4, 5, 6, 7, '8'));
+
+console.log(Math.PI * Number.parseFloat('10px') ** 2);
+
+//? генерация рандомных чисел от 1 до 1
+console.log(Math.trunc(Math.random() * 5) + 1);
+
+//? функция для генерации рандомных чисел в диапазоне
+const randomInt = (min, max) =>
+	Math.floor(Math.random() * (max - min) + 1) + min;
+console.log(randomInt(10, 20));
+
+//? округление чисел (при округлении всегда происходит преобразование в числа)
+//? округление
+console.log(Math.round(21.3));
+console.log(Math.round(21.9));
+
+//? округление в большую сторону всегда
+console.log(Math.ceil(23.1));
+console.log(Math.ceil('23.9'));
+console.log(Math.ceil(-23.9));
+
+//? округление всегда в меньшую сторону
+console.log(Math.floor(-23.9));
+console.log(Math.floor(23.3));
+console.log(Math.floor(23.9));
+console.log(Math.floor('23.9'));
+
+//? отбрасывает часть после точки
+console.log(Math.trunc(12.2));
+
+//* rounding decimals
+
+//? округляет, но при этом выводит строку (в скобках кол-во знаков после точки)
+console.log((23.2).toFixed(1));
+console.log(+(23.2).toFixed(3));
+console.log((23.2).toFixed(3));
