@@ -91,9 +91,7 @@ const displayMovements = function (movements, sort = false) {
 
 		const html = `
       <div class="movements__row">
-        <div class="movements__type movements__type--${type}">${
-			i + 1
-		} ${type}</div>
+        <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
         <div class="movements__value">${mov.toFixed(2)}€</div>
       </div>
     `;
@@ -108,14 +106,10 @@ const calcDisplayBalance = function (acc) {
 };
 
 const calcDisplaySummary = function (acc) {
-	const incomes = acc.movements
-		.filter(mov => mov > 0)
-		.reduce((acc, mov) => acc + mov, 0);
+	const incomes = acc.movements.filter(mov => mov > 0).reduce((acc, mov) => acc + mov, 0);
 	labelSumIn.textContent = `${incomes.toFixed(2)}€`;
 
-	const out = acc.movements
-		.filter(mov => mov < 0)
-		.reduce((acc, mov) => acc + mov, 0);
+	const out = acc.movements.filter(mov => mov < 0).reduce((acc, mov) => acc + mov, 0);
 	labelSumOut.textContent = `${Math.abs(out).toFixed(2)}€`;
 
 	const interest = acc.movements
@@ -159,16 +153,12 @@ btnLogin.addEventListener('click', function (e) {
 	// Prevent form from submitting
 	e.preventDefault();
 
-	currentAccount = accounts.find(
-		acc => acc.username === inputLoginUsername.value,
-	);
+	currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value);
 	console.log(currentAccount);
 
 	if (currentAccount?.pin === +inputLoginPin.value) {
 		// Display UI and message
-		labelWelcome.textContent = `Welcome back, ${
-			currentAccount.owner.split(' ')[0]
-		}`;
+		labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(' ')[0]}`;
 		containerApp.style.opacity = 100;
 
 		// Clear input fields
@@ -183,9 +173,7 @@ btnLogin.addEventListener('click', function (e) {
 btnTransfer.addEventListener('click', function (e) {
 	e.preventDefault();
 	const amount = Math.floor(inputTransferAmount.value);
-	const receiverAcc = accounts.find(
-		acc => acc.username === inputTransferTo.value,
-	);
+	const receiverAcc = accounts.find(acc => acc.username === inputTransferTo.value);
 	inputTransferAmount.value = inputTransferTo.value = '';
 
 	if (
@@ -225,9 +213,7 @@ btnClose.addEventListener('click', function (e) {
 		inputCloseUsername.value === currentAccount.username &&
 		+inputClosePin.value === currentAccount.pin
 	) {
-		const index = accounts.findIndex(
-			acc => acc.username === currentAccount.username,
-		);
+		const index = accounts.findIndex(acc => acc.username === currentAccount.username);
 		console.log(index);
 		// .indexOf(23)
 
@@ -287,7 +273,7 @@ console.log(Number.isSafeInteger(23.0 / 0));
  */
 
 //* Math and Rounding
-console.log(Math.sqrt(25));
+/* console.log(Math.sqrt(25));
 console.log(25 ** (1 / 2));
 console.log(8 ** (1 / 3));
 
@@ -331,4 +317,26 @@ console.log(Math.trunc(12.2));
 //? округляет, но при этом выводит строку (в скобках кол-во знаков после точки)
 console.log((23.2).toFixed(1));
 console.log(+(23.2).toFixed(3));
-console.log((23.2).toFixed(3));
+console.log((23.2).toFixed(3)); */
+
+//* The remainder method
+console.log(5 % 2);
+console.log(5 / 2);
+
+console.log(8 % 3);
+console.log(8 / 3);
+
+console.log(6 % 2);
+console.log(6 / 2);
+
+const isEven = n => n % 2 === 0;
+console.log(isEven(8));
+console.log(isEven(23));
+console.log(isEven(514));
+
+labelBalance.addEventListener('click', function () {
+	[...document.querySelectorAll('.movements__row')].forEach(function (row, i) {
+		if (i % 2 === 0) row.style.backgroundColor = 'orange';
+		if (i % 3 === 0) row.style.backgroundColor = 'yellow';
+	});
+});
