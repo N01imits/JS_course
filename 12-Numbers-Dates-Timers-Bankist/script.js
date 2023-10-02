@@ -91,9 +91,7 @@ const displayMovements = function (movements, sort = false) {
 
 		const html = `
       <div class="movements__row">
-        <div class="movements__type movements__type--${type}">${
-			i + 1
-		} ${type}</div>
+        <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
         <div class="movements__value">${mov.toFixed(2)}€</div>
       </div>
     `;
@@ -108,14 +106,10 @@ const calcDisplayBalance = function (acc) {
 };
 
 const calcDisplaySummary = function (acc) {
-	const incomes = acc.movements
-		.filter(mov => mov > 0)
-		.reduce((acc, mov) => acc + mov, 0);
+	const incomes = acc.movements.filter(mov => mov > 0).reduce((acc, mov) => acc + mov, 0);
 	labelSumIn.textContent = `${incomes.toFixed(2)}€`;
 
-	const out = acc.movements
-		.filter(mov => mov < 0)
-		.reduce((acc, mov) => acc + mov, 0);
+	const out = acc.movements.filter(mov => mov < 0).reduce((acc, mov) => acc + mov, 0);
 	labelSumOut.textContent = `${Math.abs(out).toFixed(2)}€`;
 
 	const interest = acc.movements
@@ -159,16 +153,12 @@ btnLogin.addEventListener('click', function (e) {
 	// Prevent form from submitting
 	e.preventDefault();
 
-	currentAccount = accounts.find(
-		acc => acc.username === inputLoginUsername.value,
-	);
+	currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value);
 	console.log(currentAccount);
 
 	if (currentAccount?.pin === +inputLoginPin.value) {
 		// Display UI and message
-		labelWelcome.textContent = `Welcome back, ${
-			currentAccount.owner.split(' ')[0]
-		}`;
+		labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(' ')[0]}`;
 		containerApp.style.opacity = 100;
 
 		// Clear input fields
@@ -183,9 +173,7 @@ btnLogin.addEventListener('click', function (e) {
 btnTransfer.addEventListener('click', function (e) {
 	e.preventDefault();
 	const amount = Math.floor(inputTransferAmount.value);
-	const receiverAcc = accounts.find(
-		acc => acc.username === inputTransferTo.value,
-	);
+	const receiverAcc = accounts.find(acc => acc.username === inputTransferTo.value);
 	inputTransferAmount.value = inputTransferTo.value = '';
 
 	if (
@@ -225,9 +213,7 @@ btnClose.addEventListener('click', function (e) {
 		inputCloseUsername.value === currentAccount.username &&
 		+inputClosePin.value === currentAccount.pin
 	) {
-		const index = accounts.findIndex(
-			acc => acc.username === currentAccount.username,
-		);
+		const index = accounts.findIndex(acc => acc.username === currentAccount.username);
 		console.log(index);
 		// .indexOf(23)
 
@@ -356,7 +342,7 @@ labelBalance.addEventListener('click', function () {
 }); */
 
 //* Numeric Separators
-const diameter = 287_460_000_000;
+/* const diameter = 287_460_000_000;
 console.log(diameter);
 
 const priceCents = 345_99;
@@ -368,3 +354,41 @@ console.log(15_00 === 1_500);
 //! не может преобразовать в число
 console.log(Number('230_999'));
 console.log(Number, parseInt('230_000'));
+ */
+
+//* working with bigInt
+console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER);
+
+console.log(2 ** 53 + 1);
+console.log(2 ** 53 + 2);
+console.log(2 ** 53 + 3);
+console.log(2 ** 53 + 4);
+console.log(2 ** 53 + 5);
+
+console.log(4293049029301235802348023458340258304502345n);
+console.log(BigInt(429));
+
+//? операции
+// доступны математические операции
+console.log(100n + 100n);
+// console.log(Math.sqrt(16n));
+
+//! нельзя миксовать bigint и обычные числа
+const huge = 9987987234972934792384923794n;
+const num = 12;
+
+//? нужно преобразовать num в bigint
+console.log(huge * BigInt(num));
+
+// исключения
+console.log(20n < 30);
+console.log(20n === 20);
+console.log(typeof 20n);
+console.log(20n == '20');
+
+console.log(huge + ' is REALLY big!');
+
+// деление
+console.log(10n / 3n);
+console.log(10 / 3);
