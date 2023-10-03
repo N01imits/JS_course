@@ -357,7 +357,7 @@ console.log(Number, parseInt('230_000'));
  */
 
 //* working with bigInt
-console.log(2 ** 53 - 1);
+/* console.log(2 ** 53 - 1);
 console.log(Number.MAX_SAFE_INTEGER);
 
 console.log(2 ** 53 + 1);
@@ -392,3 +392,39 @@ console.log(huge + ' is REALLY big!');
 // деление
 console.log(10n / 3n);
 console.log(10 / 3);
+ */
+
+//* Creating Dates
+/* const now = new Date();
+console.log(now);
+
+console.log(new Date('Tue Oct 03 2023 08:36:36'));
+console.log(new Date('31 december, 2022'));
+console.log(new Date(account1.movementsDates[0]));
+
+console.log(new Date(2112, 12, 12, 12, 12, 12));
+console.log(new Date(2037, 10, 33));
+
+console.log(new Date(0));
+console.log(new Date(3 * 24 * 60 * 60 * 1000)); */
+
+//* работа с датами
+const future = new Date(2112, 12, 12, 12, 12, 12);
+console.log(future);
+const now = new Date();
+console.log(now.getFullYear());
+console.log(now.getMonth());
+console.log(now.getDate());
+console.log(now.getDay());
+console.log(now.getHours());
+console.log(now.getMinutes());
+console.log(now.getSeconds());
+console.log(now.toISOString());
+console.log(now.getTime());
+
+console.log(new Date(1696314044947));
+
+console.log(Date.now());
+
+now.setFullYear(2029);
+console.log(now);
