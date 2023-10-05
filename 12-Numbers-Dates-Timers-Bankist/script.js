@@ -183,14 +183,42 @@ const updateUI = function (acc) {
 	calcDisplaySummary(acc);
 };
 
+const startLogOutTimer = function () {
+	const tick = function () {
+		const min = String(Math.trunc(time / 60)).padStart(2, '0');
+		const sec = String(time % 60).padStart(2, '0');
+
+		// in each call, print the remaining time to UI
+		labelTimer.textContent = `${min}:${sec}`;
+
+		// when 0 seconds, stop timer and log out user
+		if (time === 0) {
+			clearInterval(timer);
+			labelWelcome.textContent = 'Login to get started';
+			containerApp.style.opacity = 0;
+		}
+
+		// decrese 1s
+		time--;
+	};
+
+	// set time to 5 minutes
+	let time = 120;
+
+	// call the timer every second
+	tick();
+	const timer = setInterval(tick, 1000);
+	return timer;
+};
+
 ///////////////////////////////////////
 // Event handlers
-let currentAccount;
+let currentAccount, timer;
 
 //? всегда авторизирован
-currentAccount = account1;
-updateUI(account1);
-containerApp.style.opacity = 100;
+// currentAccount = account1;
+// updateUI(account1);
+// containerApp.style.opacity = 100;
 
 //? эксперементируем с api
 
@@ -234,12 +262,21 @@ btnLogin.addEventListener('click', function (e) {
 			currentAccount.locale,
 			options,
 		).format(now);
+
 		// Clear input fields
 		inputLoginUsername.value = inputLoginPin.value = '';
 		inputLoginPin.blur();
 
+		// Timer
+		if (timer) clearInterval(timer);
+		timer = startLogOutTimer();
+
 		// Update UI
 		updateUI(currentAccount);
+
+		// Reset timer
+		clearInterval(timer);
+		timer = startLogOutTimer();
 	}
 });
 
@@ -285,6 +322,10 @@ btnLoan.addEventListener('click', function (e) {
 
 			// Update UI
 			updateUI(currentAccount);
+
+			// Reset timer
+			clearInterval(timer);
+			timer = startLogOutTimer();
 		}, 2500);
 	}
 	inputLoanAmount.value = '';
@@ -546,7 +587,7 @@ console.log(
 ); */
 
 //* Timers: setTimeout and setInterval
-//? setTimeout
+/* //? setTimeout
 const ingredients = ['olives', 'spinach'];
 const pizzaTimer = setTimeout(
 	(arg1, arg2) => console.log(`Here is your pizza with ${arg1} and ${arg2}`),
@@ -562,3 +603,4 @@ setInterval(function () {
 	const now = new Date();
 	console.log(now.toLocaleTimeString());
 }, 1000);
+ */
