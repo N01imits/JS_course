@@ -113,7 +113,7 @@ logo.classList.remove('c', 'j');
 logo.classList.toggle('c');
 logo.classList.contains('c'); */
 
-const btnScrollTo = document.querySelector('.btn--scroll-to');
+/* const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 
 btnScrollTo.addEventListener('click', function (e) {
@@ -128,18 +128,18 @@ btnScrollTo.addEventListener('click', function (e) {
 		'height/width viewport',
 		document.documentElement.clientHeight,
 		document.documentElement.clientWidth,
-	);
+	); */
 
-	// srolling
-	// window.scrollTo(s1coord.left + window.scrollX, s1coord.top + window.scrollY);
+// srolling
+// window.scrollTo(s1coord.left + window.scrollX, s1coord.top + window.scrollY);
 
-	// window.scrollTo({
-	// 	left: s1coords.left + window.pageXOffset,
-	// 	top: s1coords.top + window.pageYOffset,
-	// 	behavior: 'smooth',
-	// });
+// window.scrollTo({
+// 	left: s1coords.left + window.pageXOffset,
+// 	top: s1coords.top + window.pageYOffset,
+// 	behavior: 'smooth',
+// });
 
-	section1.scrollIntoView({ behavior: 'smooth' });
+/* 	section1.scrollIntoView({ behavior: 'smooth' });
 });
 
 const h1 = document.querySelector('h1');
@@ -154,7 +154,32 @@ setTimeout(
 	() => h1.removeEventListener('mouseenter', alertH1),
 
 	3000,
-);
+); */
 // h1.onmouseenter = function (e) {
 // 	alert('12');
 // };
+
+const randomInt = (min, max) =>
+	Math.floor(Math.random() * (max - min + 1) + min);
+
+const randomColor = () =>
+	`rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+
+document.querySelector('.nav__link').addEventListener('click', function (e) {
+	this.style.backgroundColor = randomColor();
+	console.log('Link', e.target, e.currentTarget);
+	console.log(this === e.currentTarget);
+
+	//stop propagation
+	// e.stopPropagation();
+});
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+	this.style.backgroundColor = randomColor();
+	console.log('Container', e.target, e.currentTarget);
+});
+
+document.querySelector('.nav').addEventListener('click', function (e) {
+	this.style.backgroundColor = randomColor();
+	console.log('Nav', e.target, e.currentTarget);
+});
